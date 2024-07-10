@@ -1,65 +1,90 @@
-# Date and time of creation: [current date and time]
-# Purpose of the program: Read in a CSV file, drop unnecessary columns, add OCR data from text files if available, and save as a new CSV file
+# 2024-07-10
+# This script reads two CSV files, processes the first to keep only Asset and Transcription columns,
+# renames them to id and gold, and merges it with the second CSV file after removing the .jpg extension
+# from the ID column. The resulting DataFrame contains the gold and silver columns and provides statistics
+# on the merge operation.
 
 import pandas as pd
-import os
-from tqdm import tqdm
 
-# Function to read OCR data from text files
-def read_ocr_from_file(asset_name):
-    ocr_file_path = f"//scratch4/lhyman6/OCR/work/text/{asset_name}.txt"
-    if os.path.isfile(ocr_file_path):
-        with open(ocr_file_path, 'r', encoding='utf-8') as file:
-            return file.read()
-    else:
-        return None
+# Paths to the CSV files
+gold_csv_path = '/data/lhyman6/OCR/data/gompers_corrections/bythepeople1.csv'
+silver_csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/silver_ocr_data.csv'
+merged_csv_path = 'complete_bart_training_data.csv'
 
-def main():
-    # File paths
-    input_csv_path = "/data/lhyman6/OCR/data/bythepeople1.csv"
-    output_csv_path = "/data/lhyman6/OCR/data/training_data.csv"
+# Read the first CSV file (gold data)
+print("Reading the gold CSV file...")
+gold_df = pd.read_csv(gold_csv_path)
+print("Gold CSV file read successfully.")
 
-    # Read the CSV file
-    print("Reading the CSV file...")
-    df = pd.read_csv(input_csv_path)
+# Keep only the Asset and Transcription columns
+print("Filtering the gold DataFrame to keep only the Asset and Transcription columns...")
+gold_df_filtered = gold_df[['Asset', 'Transcription']]
 
-    # Rename columns
-    df = df.rename(columns={'Asset': 'id', 'Transcription': 'corrected', 'OCR': 'ocr'})
+# Rename the columns to id and gold
+print("Renaming the columns to id and gold...")
+gold_df_filtered.rename(columns={'Asset': 'id', 'Transcription': 'gold'}, inplace=True)
 
-    # Set the initial value of the 'ocr' column to blank
-    df['ocr'] = ""
+# Convert the 'gold' column to strings for tokenization
+print("Converting the 'gold' column to strings for tokenization...")
+gold_df_filtered['gold'] = gold_df_filtered['gold'].fillna('').astype(str)
 
-    # Add OCR data from text files to the DataFrame
-    print("Adding OCR data to the DataFrame...")
-    with tqdm(total=len(df['id'])) as pbar:
-        df['ocr'] = df['id'].apply(lambda x: read_ocr_from_file(x))
-        pbar.update()
+# Print the head of the gold DataFrame
+print("Printing the head of the gold DataFrame:")
+print(gold_df_filtered.head())
 
-    # Keep only the necessary columns
-    df = df[['id', 'ocr', 'corrected']]
+# Read the second CSV file (silver data)
+print("Reading the silver CSV file...")
+silver_df = pd.read_csv(silver_csv_path)
+print("Silver CSV file read successfully.")
 
+# Remove the .jpg extension from the ID column
+print("Removing the .jpg extension from the ID column...")
+silver_df['ID'] = silver_df['ID'].str.replace('.jpg', '')
 
-    # Count the number of values read in and how many remain blank
-    num_values_read = df['ocr'].count()
-    num_blank_values = df['ocr'].isnull().sum()
+# Sort the silver DataFrame
+print("Sorting the silver DataFrame...")
+silver_df = silver_df.sort_values(by='ID')
 
-    
-    #convert to strings for tokenization
-    df['ocr'] = df['ocr'].fillna('').astype(str)
-    df['corrected'] = df['corrected'].fillna('').astype(str)
+# Print the head of the silver DataFrame
+print("Printing the head of the silver DataFrame:")
+print(silver_df.head())
 
+# Merge the DataFrames on the id column
+print("Merging the gold and silver DataFrames...")
+merged_df = pd.merge(gold_df_filtered, silver_df, how='left', left_on='id', right_on='ID')
 
-    # Print the head of the DataFrame
-    print("Printing the head of the DataFrame:")
-    print(df.head())
+# Rename the ocr column to silver
+print("Renaming the 'ocr' column to 'silver'...")
+merged_df.rename(columns={'ocr': 'silver'}, inplace=True)
 
-    # Save the DataFrame to a new CSV file
-    print("Saving the modified DataFrame to a new CSV file...")
-    df.to_csv(output_csv_path, index=False)
+# Drop the extra ID column from the silver DataFrame
+print("Dropping the extra 'ID' column from the merged DataFrame...")
+merged_df.drop(columns=['ID'], inplace=True)
 
-    print(f"CSV file with OCR data saved at: {output_csv_path}")
-    print(f"Number of values read in: {num_values_read}")
-    print(f"Number of blank values remaining: {num_blank_values}")
+# Identify and drop rows where the merge failed (silver column is NaN)
+print("Dropping rows with failed merges...")
+initial_row_count = len(merged_df)
+merged_df.dropna(subset=['silver'], inplace=True)
+rows_dropped = initial_row_count - len(merged_df)
 
-if __name__ == "__main__":
-    main()
+# Save the merged DataFrame as a new CSV file
+print(f"Saving the merged DataFrame to {merged_csv_path}...")
+merged_df.to_csv(merged_csv_path, index=False)
+print("Merged DataFrame saved successfully.")
+
+# Print the head of the merged DataFrame
+print("Printing the head of the merged DataFrame:")
+print(merged_df.head())
+
+# Provide statistics on the merge operation
+total_rows_gold = len(gold_df_filtered)
+total_rows_silver = len(silver_df)
+total_rows_merged = len(merged_df)
+
+print("\nMerge Operation Statistics:")
+print(f"Total rows in gold DataFrame: {total_rows_gold}")
+print(f"Total rows in silver DataFrame: {total_rows_silver}")
+print(f"Total rows in merged DataFrame: {total_rows_merged}")
+print(f"Number of rows dropped due to failed merges: {rows_dropped}")
+print(f"Number of successful merges: {total_rows_merged}")
+print(f"Merged DataFrame saved as: {merged_csv_path}")
