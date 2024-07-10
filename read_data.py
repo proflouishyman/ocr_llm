@@ -2,7 +2,8 @@
 # This script reads two CSV files, processes the first to keep only Asset and Transcription columns,
 # renames them to id and gold, and merges it with the second CSV file after removing the .jpg extension
 # from the ID column. It then reads all .txt.pyte files from a specified directory, merges their content
-# into the existing DataFrame based on the id, and saves the final result.
+# into the existing DataFrame based on the id, and saves the final result. All relevant columns are
+# converted to string type to ensure consistency and rows with empty strings are removed.
 
 import os
 import pandas as pd
@@ -69,6 +70,11 @@ initial_row_count = len(merged_df)
 merged_df.dropna(subset=['silver'], inplace=True)
 rows_dropped = initial_row_count - len(merged_df)
 
+# Convert 'gold' and 'silver' columns to string
+print("Converting 'gold' and 'silver' columns to string...")
+merged_df['gold'] = merged_df['gold'].astype(str)
+merged_df['silver'] = merged_df['silver'].astype(str)
+
 # Read all .txt.pyte files from the specified directory and merge their contents
 print("Reading .txt.pyte files from the specified directory and merging their contents...")
 pyte_data = []
@@ -78,13 +84,25 @@ for filename in os.listdir(pyte_directory_path):
         id = filename.replace('.txt.pyte', '')
         with open(os.path.join(pyte_directory_path, filename), 'r') as file:
             content = file.read()
-            pyte_data.append({'id': id, 'pyte_content': content})
+            pyte_data.append({'id': id, 'pyte': content})
 
 pyte_df = pd.DataFrame(pyte_data)
+
+# Convert 'pyte' column to string
+print("Converting 'pyte' column to string...")
+pyte_df['pyte'] = pyte_df['pyte'].astype(str)
 
 # Merge the pyte DataFrame with the existing merged DataFrame
 print("Merging the pyte DataFrame with the existing merged DataFrame...")
 final_df = pd.merge(merged_df, pyte_df, how='left', on='id')
+
+# Convert 'pyte' column to string in the final DataFrame
+print("Converting 'pyte' column to string in the final DataFrame...")
+final_df['pyte'] = final_df['pyte'].astype(str)
+
+# Remove rows with empty strings in 'gold', 'silver', or 'pyte' columns
+print("Removing rows with empty strings in 'gold', 'silver', or 'pyte' columns...")
+final_df = final_df[(final_df['gold'] != '') & (final_df['silver'] != '') & (final_df['pyte'] != '')]
 
 # Save the final merged DataFrame as a new CSV file
 print(f"Saving the final merged DataFrame to {merged_csv_path}...")

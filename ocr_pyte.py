@@ -2,6 +2,7 @@ import os
 from PIL import Image
 import pytesseract
 from tqdm import tqdm
+#works
 
 # Set the path to the Tesseract command and data directory
 pytesseract.pytesseract.tesseract_cmd = r'/data/lhyman6/programs/tesseract/tesseract/bin/tesseract'

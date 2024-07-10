@@ -1,88 +1,82 @@
-import os
+# Date and time of creation
+# 2024-07-10
+
+# Purpose: Tokenize string data from a CSV file, split into training, validation, and testing sets, and save for later training in specified subfolders
+#totally untested
+
+
 import pandas as pd
+from transformers import BartTokenizer
+import torch
+import os
+from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
-def load_text_files(directory):
-    """
-    Load every text file in a directory into a DataFrame, ensuring all text is treated as string.
+def load_data(file_path, target_column, size=None):
+    # Load the data from the CSV file
+    print(f"Loading data from {file_path} for target column '{target_column}'...")
+    data = pd.read_csv(file_path)
+    if size:
+        data = data.sample(n=size, random_state=42)
+    return data['pyte'], data[target_column]
 
-    Args:
-    - directory: The directory path containing the text files.
+def tokenize_data(tokenizer, inputs, targets, max_length=1024):
+    print("Tokenizing data...")
+    input_ids = []
+    target_ids = []
+    for input_text, target_text in tqdm(zip(inputs, targets), total=len(inputs)):
+        input_id = tokenizer.encode(input_text, max_length=max_length, truncation=True, padding='max_length', return_tensors='pt')
+        target_id = tokenizer.encode(target_text, max_length=max_length, truncation=True, padding='max_length', return_tensors='pt')
+        input_ids.append(input_id)
+        target_ids.append(target_id)
+    input_ids = torch.cat(input_ids)
+    target_ids = torch.cat(target_ids)
+    return input_ids, target_ids
 
-    Returns:
-    - df: DataFrame containing the loaded text files, with 'ocr' as strings.
-    """
-    file_texts = []
-    file_ids = []
+def save_tokenized_data(input_ids, target_ids, folder_path):
+    print(f"Saving tokenized data to {folder_path}...")
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+    torch.save(input_ids, os.path.join(folder_path, 'inputs.pt'))
+    torch.save(target_ids, os.path.join(folder_path, 'targets.pt'))
+    print(f"Data saved to {folder_path}")
 
-    # Get list of text files
-    text_files = [f for f in os.listdir(directory) if f.endswith('.txt')]
+def split_and_save_data(input_ids, target_ids, base_folder):
+    print("Splitting data into training, validation, and testing sets...")
+    train_inputs, temp_inputs, train_targets, temp_targets = train_test_split(
+        input_ids, target_ids, test_size=0.2, random_state=42
+    )
+    val_inputs, test_inputs, val_targets, test_targets = train_test_split(
+        temp_inputs, temp_targets, test_size=0.5, random_state=42
+    )
     
-    # Use tqdm for progress indication
-    for filename in tqdm(text_files, desc="Loading text files"):
-        # Read the text from the file
-        with open(os.path.join(directory, filename), 'r', encoding='utf-8') as file:
-            text = file.read()
-            file_texts.append(text)
-            # Create an ID using the filename (dropping the .txt extension)
-            file_id = os.path.splitext(filename)[0]
-            file_ids.append(file_id)
+    splits = {'train': (train_inputs, train_targets), 
+              'val': (val_inputs, val_targets), 
+              'test': (test_inputs, test_targets)}
+    
+    for split, (split_inputs, split_targets) in splits.items():
+        folder_path = os.path.join(base_folder, split)
+        save_tokenized_data(split_inputs, split_targets, folder_path)
 
-    # Create a DataFrame and ensure 'ocr' column is treated as strings
-    df = pd.DataFrame({'id': file_ids, 'ocr': file_texts})
-    df['ocr'] = df['ocr'].astype(str)
-    return df
+def main(file_path, target_column, sizes, base_folder):
+    tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
 
-def validate_and_clean_data(dataframe):
-    """
-    Perform checks on DataFrame and clean data by removing empty strings in 'ocr' column.
+    for size in sizes:
+        print(f"\nProcessing size {size} for target column '{target_column}'")
+        inputs, targets = load_data(file_path, target_column, size=size)
+        
+        # Use tqdm for progress indication during tokenization
+        print("Starting tokenization...")
+        input_ids, target_ids = tokenize_data(tokenizer, inputs, targets, max_length=1024)
+        
+        folder_name = f"{target_column}_{size}"
+        base_folder_path = os.path.join(base_folder, folder_name)
+        split_and_save_data(input_ids, target_ids, base_folder_path)
 
-    Args:
-    - dataframe: DataFrame to validate and clean.
+if __name__ == "__main__":
+    file_path = '/scratch4/lhyman6/OCR/ocr_llm/complete_bart_training_data.csv'  # replace with your file path
+    base_folder = '/scratch4/lhyman6/OCR/ocr_llm/tokenized_data'  # base folder to save tokenized data
+    sizes = [100, 1000, 10000]
 
-    Returns:
-    - dataframe: Cleaned DataFrame.
-    - num_empty_strings: Number of rows with empty strings in 'ocr' column.
-    - num_non_strings: Number of rows with non-string entries in 'ocr' column.
-    - empty_string_filenames: List of filenames with empty strings in 'ocr' column.
-    - non_string_filenames: List of filenames with non-string entries in 'ocr' column.
-    """
-    # Check for non-string entries and convert to string if any
-    num_non_strings = dataframe['ocr'].apply(lambda x: not isinstance(x, str)).sum()
-    non_string_filenames = dataframe.loc[dataframe['ocr'].apply(lambda x: not isinstance(x, str)), 'id'].tolist()
-    if num_non_strings > 0:
-        print(f"Found {num_non_strings} non-string entries in 'ocr' column. Converting to strings.")
-
-    # Remove rows with empty strings
-    num_empty_strings = (dataframe['ocr'].str.strip() == '').sum()
-    empty_string_filenames = dataframe.loc[dataframe['ocr'].str.strip() == '', 'id'].tolist()
-    if num_empty_strings > 0:
-        print(f"Found {num_empty_strings} rows with empty strings in 'ocr' column. Dropping them.")
-
-    dataframe = dataframe[dataframe['ocr'].str.strip() != '']
-    dataframe.loc[:, 'ocr'] = dataframe['ocr'].astype(str)
-
-    return dataframe, num_empty_strings, num_non_strings, empty_string_filenames, non_string_filenames
-
-def save_as_csv(dataframe, filename):
-    """
-    Save DataFrame as a CSV file.
-
-    Args:
-    - dataframe: The DataFrame to be saved.
-    - filename: The filename (with path) for the CSV file.
-    """
-    dataframe.to_csv(filename, index=False)
-
-# Example usage:
-directory_path = '/scratch4/lhyman6/1919/1919/images_pyte'
-csv_filename = '/data/lhyman6/OCR/1919_ocr_loaded.csv'
-dataframe = load_text_files(directory_path)
-dataframe, num_empty_strings, num_non_strings, empty_string_filenames, non_string_filenames = validate_and_clean_data(dataframe)
-save_as_csv(dataframe, csv_filename)
-print("CSV file saved successfully.")
-
-print(f"Number of empty strings: {num_empty_strings}")
-print(f"Empty string filenames: {empty_string_filenames}")
-print(f"Number of non-string entries: {num_non_strings}")
-print(f"Non-string filenames: {non_string_filenames}")
+    for target_column in ['gold', 'silver']:
+        main(file_path, target_column, sizes, base_folder)
