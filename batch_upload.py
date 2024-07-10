@@ -3,6 +3,8 @@ import json
 import os
 from openai import OpenAI
 from tqdm import tqdm
+#works July 2024
+
 
 # Variables
 API_KEY_FILE = "/data/lhyman6/api_key.txt"
@@ -10,10 +12,10 @@ IMAGE_DIR = "/data/lhyman6/data/images/"  # Directory containing image files
 PROMPT_FILE = "/data/lhyman6/OCR/scripts/ocr_llm/gompers_ocr_prompt.txt"  # File containing the prompt
 API_URL = "https://api.openai.com/v1/chat/completions"
 BATCH_DIR = "batch"
-DESCRIPTION = "test3 gompers upload"
+DESCRIPTION = "gompers --  the show"
 VALID_IMAGE_TYPES = [".jpg", ".jpeg", ".png"]
 MAX_BATCH_SIZE_BYTES = 95 * 1024 * 1024  # slightly less than 100 MB
-MAX_BATCHES = 1  # Set the maximum number of batches to process
+MAX_BATCHES = 160  # Set the maximum number of batches to process
 JSONL_FILE_BASE = "batchinput"
 
 def read_prompt(prompt_file):
