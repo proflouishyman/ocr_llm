@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_xpOyoPY0zbREu95dKzwFkFD5",
+  "custom_id": "|data|lhyman6|data|images|mss511850147-21.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "92cee042fda2a7f040351419ce045419",
+    "body": {
+      "id": "chatcmpl-9jSu7HpGY1wX7bdFJni34aV2i875G",
+      "object": "chat.completion",
+      "created": 1720622895,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Rae John 39\\nRoeschenthaler, Judson B. 60\\nRoberts J. L. 65\\nRiley A. J. 79, 295-711, 415, 707-780, 795, 524-970\\nRobinson Herman 83- 95-107, 191-281, 292, 297-300, 427-465, 549\\nRobins Raymond 95\\nRobinson Emma 96\\nRobins Raymond 110\\nReid Stewart 119, 754-661-917\\nRegan Michael J. 174\\nRoberts Winslow 183\\nRyan W. D. 241, 335\\nRoach Jas. E. 258\\nReview of Reviews, Editorial Dept. 273\\nRichter Melvin 273\\nRaja Alfred G. 450\\nRoderick I. N. 532\\nRichards John H. 609\\nRyan Jas. R. 412\\nRich Frank G. 736, 964\\nRichardson P. T. 759\\nRansom Frank J. 761\\nRobinson Hugh 871\\nRichards R. O. 921\\nRoslyn Guy 917\\nRich W. G. 935\\nRankin R. E. 939\\nReece Thos. 953\\nRaub A. J. 977\\nReus Geo. 978\\nRichert John 993\",\n    \"summary\": \"A list of names with associated numbers and sometimes additional notations. The names appear to be organized alphabetically by last name, starting with the letter 'R'.\",\n    \"date\": \"YYYY-MM-DD\",\n    \"is_printed\": false,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 376,
+        "total_tokens": 1359
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

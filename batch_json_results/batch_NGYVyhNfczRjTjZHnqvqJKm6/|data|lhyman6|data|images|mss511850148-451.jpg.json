@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_m0I330maSjymeDOihXuHf951",
+  "custom_id": "|data|lhyman6|data|images|mss511850148-451.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "aac8023c2c64bcc00689ba019cb50b9e",
+    "body": {
+      "id": "chatcmpl-9jSuFixUUAs4Xm8dTYmb1t9ZeM36r",
+      "object": "chat.completion",
+      "created": 1720622903,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"421\\nMr. James Lynch, President,\\nInternational Typographical Union,\\nNewton Claypool Building,\\nIndianapolis, Indiana.\\n\\nMay 19, 1909.\\nDear Sir and Brother:\\nYour favor of the 14th Inst. received and contents noted. You say, referring to the charter application of the Jewish newspaper writers of New York City, that the matter should be held in abeyance until you again have the opportunity of personally conferring with me in regard thereto. I wish you would please advise me whether we cannot meet at some time mutually convenient prior to our next Executive Council meeting, or whether you could meet me in New York during the meeting. The Council will meet in New York at the Victoria Hotel, June 15th.\\nAsking you to let me hear from you in regard to this matter at your early convenience, and with best wishes, I am\\nFraternally yours,\\nPresident, American Federation of Labor.\",\n    \"summary\": \"The letter dated May 19, 1909, from the President of the American Federation of Labor to Mr. James Lynch, President of the International Typographical Union, discusses the charter application of Jewish newspaper writers in New York City. The matter is to be held in abeyance until further consultation. The letter requests a meeting either before the next Executive Council meeting or in New York during the Council meeting on June 15th.\",\n    \"date\": \"1909-05-19\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 329,
+        "total_tokens": 1312
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

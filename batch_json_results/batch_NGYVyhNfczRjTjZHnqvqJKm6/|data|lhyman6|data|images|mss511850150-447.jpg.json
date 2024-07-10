@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_aMuehXqnRJ1lm1WFmv8z0xD9",
+  "custom_id": "|data|lhyman6|data|images|mss511850150-447.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "c183cba893f57e310c2ece3531d68b24",
+    "body": {
+      "id": "chatcmpl-9jSu6gqQ92p2Nch8waPN9s1mskhgG",
+      "object": "chat.completion",
+      "created": 1720622894,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"LF\\n\\nSept. 25, 1909.\\nMr. J. H. Gorton, Secretary,\\nPark Employees Union, #12720\\n427 Spruce St., Scranton, Pa\\n\\nDear Sir and Brother:\\n\\nYour favor of September 16th containing copies of the proposed constitution and by-laws of your organization came duly to hand. Let me call to your attention Section 23, of the Constitution and By-laws, which says in part: 'All dues are payable the first day of each month.' You will notice that there is no provision made in this section or in any other part of the constitution and by-laws as submitted which provides for the amount of dues to be paid by the members of your organization. Let me call to your attention Section 12 of Article XIII of the constitution of the American Federation of Labor which is as follows:\\n\\n'No Local shall be entitled to any of the benefits or the defense fund unless it requires its members to pay not less than fifty (50) cents per month.'\\n\\nYour organization as a local affiliated directly with the American Federation of Labor will, under the constitution, pay ten cents per month per capita tax, five cents of which must be placed in a reserve fund for the purpose of paying benefits to organizations affiliated directly with the American Federation of Labor, in the event of their becoming engaged in a strike or lockout.\",\n    \"summary\": \"The letter informs Mr. J. H. Gorton that the constitution and by-laws of his organization have been received. It highlights that dues are payable on the first day of each month but notes that the specific amount is not mentioned. For eligibility for benefits from the American Federation of Labor's defense fund, members must pay at least fifty cents per month. The letter then explains the per capita tax and the reserve fund requirements.\",\n    \"date\": \"1909-09-25\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 415,
+        "total_tokens": 1398
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

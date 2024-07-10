@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_d2VOXg8xeTPlHxzDnwR30Rvn",
+  "custom_id": "|data|lhyman6|data|images|mss511850148-369.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "1b4447f4c0a82cebd016fad8883262ac",
+    "body": {
+      "id": "chatcmpl-9jSuF8Jcfo6Aro9ChtXnpVBLCbQAQ",
+      "object": "chat.completion",
+      "created": 1720622903,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"COPY.\\n\\nKansas City, Kansas, May 14, 1909.\\n\\nMR. W. L. Riley, President,\\nNational Stogie Makers League,\\nWheeling, W. Va.\\n\\nDear Sir and Brother:\\n\\nYour circular without date received and carefully read.\\nNaturally I am with the oppressed and for the weak side, if there is any chance of upholding it.\\n\\nWhile I am at all times in favor of strict autonomy, as by the means of this feature, the American Labor Movement grew to the grand proportion that we see it, and having a great deal of experience in the dual organization attached to this craft, which I have condemned at all times, even in the conventions of the American Federation of Labor, so you can readily understand, with these few remarks, that I believe the welfare of the Stogie Makers will be better served, and they will have better service, by affiliating with the Cigar Makers Union.\\n\\nHoping this will be satisfactory, I remain,\\n\\nYours fraternally,\\n(Signed) Wm. J. Gilthorpe,\\nInternational Secretary-Treasurer.\",\n    \"summary\": \"A letter dated May 14, 1909, from Wm. J. Gilthorpe addresses W. L. Riley, President of the National Stogie Makers League. Gilthorpe expresses support for the oppressed and emphasizes the benefits of autonomy within the American Labor Movement. He advocates for Stogie Makers to affiliate with the Cigar Makers Union for better welfare and service.\",\n    \"date\": \"1909-05-14\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 361,
+        "total_tokens": 1344
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

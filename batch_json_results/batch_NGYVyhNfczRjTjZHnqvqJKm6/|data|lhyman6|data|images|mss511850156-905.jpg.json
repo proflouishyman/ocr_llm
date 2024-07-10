@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_qsT199wgz1svLEaMTm66cTM5",
+  "custom_id": "|data|lhyman6|data|images|mss511850156-905.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "809cf83d3c95eea315aa2409ffdb7ef3",
+    "body": {
+      "id": "chatcmpl-9jSuCCuhoBgDmkAlsw07c0omLwY2W",
+      "object": "chat.completion",
+      "created": 1720622900,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mr. V. B. Garber, President, Brotherhood of Locomotive Firemen and Enginemen, Peoria, Illinois.\\n\\nDear Sir and Brother:\\n\\nI am just in receipt of your courteous invitation to attend the Twelfth Biennial Convention of the Brotherhood of Locomotive Firemen and Enginemen, which will convene on Monday evening, June 6th, at the Auditorium in St. Paul, Minnesota. I beg to assure you of my appreciation of the courtesy of your invitation.\\n\\nThat I should be greatly pleased to be able to accept your invitation should go without saying. It would indeed afford me great pleasure to have the opportunity of meeting and greeting the officers and delegates to your convention, but I regret to say that my engagements are of such a character as to make it impossible for me to do so. You will permit me, however, to express the sincere hope for a successful and profitable convention.\\n\\nWith kind regards and hoping to hear from you from time to time whenever convenient, I am,\\n\\nFraternally yours,\\n\\nPresident, American Federation of Labor.\", \n    \"summary\": \"The author acknowledges and appreciates an invitation to attend the Twelfth Biennial Convention of the Brotherhood of Locomotive Firemen and Enginemen. They express regret for not being able to attend due to prior engagements and convey best wishes for a successful convention.\",\n    \"date\": \"1910-05-19\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 328,
+        "total_tokens": 1311
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

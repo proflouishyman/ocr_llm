@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_MMN12JePpNUtJFtRJshE3leq",
+  "custom_id": "|data|lhyman6|data|images|mss511850155-90.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "984cb8f01a96247e051075792455c818",
+    "body": {
+      "id": "chatcmpl-9jSu8jAAiZt9PXmtt81FZYy3Dgr7b",
+      "object": "chat.completion",
+      "created": 1720622896,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"57\\nX.\\nMar. 24, 1920,\\nMr. W. E. McEwen, Commissioner of Labor,\\nState of Minnesota, Bureau of Labor,\\nCapitol Building, St. Paul, Minn.\\nDear Sir and Brother:\\nYour favor of the 23d, instant received and contents noted.\\nIn compliance with your request, it affords me pleasure to enclose to you herein the letter of introduction which you desired to be used in connection with your European trip. I also enclose a list of the names and addresses of the most prominent men in the different countries you will visit whom you should see. If after conferring with them you deem it advisable to see others, they can very easily direct you to whom you should go.\\nI appreciate that you will be exceedingly busy on your trip, but yet if you find a spare moment while abroad I will be glad to have a word from you from time to time.\\nWith the best wishes for your success, and hoping to hear from you whenever convenient, I am,\\nFraternally yours,\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"A letter dated March 24, 1920, from the President of the American Federation of Labor to W. E. McEwen, Commissioner of Labor for the State of Minnesota. The letter acknowledges the receipt of McEwen's request and encloses a letter of introduction and a list of contacts for McEwen's European trip. The President expresses appreciation for McEwen's potential busy schedule but hopes to receive updates during the trip.\",\n    \"date\": \"1920-03-24\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 367,
+        "total_tokens": 1350
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

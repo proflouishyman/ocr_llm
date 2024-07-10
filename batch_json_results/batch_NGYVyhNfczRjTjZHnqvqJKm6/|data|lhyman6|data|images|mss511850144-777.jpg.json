@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_Jz4G9joUNO2FDad2fqSRyvXa",
+  "custom_id": "|data|lhyman6|data|images|mss511850144-777.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "e469c4fdf3bc3edc3c5b8f40ce356432",
+    "body": {
+      "id": "chatcmpl-9jSuCGAFDqOury1M0EZj6W5IGgoEm",
+      "object": "chat.completion",
+      "created": 1720622900,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mr. W. H. White --2-- which your attention is directed as indicating very briefly the \\\"aims and aspirations of the Federation\\\". Your attention is pertinaciously called to the statement published by the Cigar Makers' International Union, of which I am Vice-President, which shows the benefits paid by that organization and the decrease in deaths from tuberculosis since the international union was formed. This is the report from only one international union, but similar data from other trades in which you may be interested could be secured direct from the secretaries of those organizations as indicated on the enclosed list. Of course, you understand that to get a general idea of the work of the Federation, it would be necessary for you to consult the official printed proceedings of each year's annual conventions. In a postscript to your letter you desire to know what is the average annually paid for sick dues or strike dues. As indicated above, the payment of such benefits is by the organization of the various trades, that is, both national and local, and varies as provided by their respective constitutions. The constitution of the American Federation of Labor provides for payment of strike benefits to members of directly affiliated local unions under certain provisions as indicated in Article 15 of the Constitution, copy of which is included in the package of literature being sent to you under separate cover. Very truly yours, Samuel Gompers President, American Federation of Labor.\",\n    \"summary\": \"The letter addresses Mr. W. H. White, briefly discussing the aims and aspirations of the Federation. It references a statement by the Cigar Makers' International Union showing benefits paid and decreased deaths from tuberculosis since its formation. It suggests consulting official printed proceedings for further information. A postscript answers an inquiry about average payments for sick or strike dues, stating these vary by organization and are specified in the American Federation of Labor's constitution.\",\n    \"date\": \"Unknown\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 409,
+        "total_tokens": 1392
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

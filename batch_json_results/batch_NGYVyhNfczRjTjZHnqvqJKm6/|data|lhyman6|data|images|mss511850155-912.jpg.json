@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_zZJP70d3saQkNX0c0TCjsR30",
+  "custom_id": "|data|lhyman6|data|images|mss511850155-912.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "28dc447263d6e1916dbcefba2ffbd78a",
+    "body": {
+      "id": "chatcmpl-9jSu4bwso0mynIsSB6X7zfZyVohFA",
+      "object": "chat.completion",
+      "created": 1720622892,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Rev. Frederick Lynch -2- is well known by them as well as others active in the social reform movements. If you think well of Mr. Sullivan delivering an address to your meeting on Sunday evening, please telegraph me upon receipt of this, and he will go on! Very truly yours, Samuel Gompers, President, American Federation of Labor. March 29, 1910. Rev. Frederick Lynch, New York City\u2026 Dear Sir and Brother, the American Association very much you the evening to the invitation sent about ten days ago I feel supplement. You asking that me, upon my return to Headquarters elaborate. The you are the questions, we must Closing address requested your find Mr. Sullivan delivered address, young Mr. Sullivan to deliver an addresses into church evening adequate able deliver occasions. Sullivan educated Sullivan among industrial labor men.\",\n    \"summary\": \"The letter discusses a recommendation for Mr. Sullivan to deliver a speech on Sunday evening. The writer asks Rev. Frederick Lynch to telegraph his approval so that Sullivan can proceed with the plan. The letter is signed by the President of the American Federation of Labor, Samuel Gompers, and dated March 29, 1910.\",\n    \"date\": \"1910-03-29\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 281,
+        "total_tokens": 1264
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_GbDZ4dyPz0lcxW1clEmOXi44",
+  "custom_id": "|data|lhyman6|data|images|mss511850144-56.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "a6fc503fa8924a994f2e6a748c5f06d5",
+    "body": {
+      "id": "chatcmpl-9jSuCfmaFbHFOsb86n0rW8PtzjIAl",
+      "object": "chat.completion",
+      "created": 1720622900,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"X. Jan. 11, 1909. Mr. Wm. J. Smith, President, S. C. State Federation of Labor, 1820 Barnwell St., Columbia, S. C. Dear Sir and Brother: Shortly after my interview with you in my office last week, I left this city on official business, only returning to Headquarters this morning when I immediately went into session with the Executive Council of the American Federation of Labor which will probably be in session the entire week. However, in conformity with my promise to let you hear from me in regard to the subject matter of your interview with me, and in reply to your letter of January 6th, I am taking this opportunity of writing you, even though briefly, for as you can very readily appreciate the work of the Executive Council is of such a character and so engrossing as to leave me little or no opportunity to give attention to my correspondence. I have talked the matter over with Secretary Morrison as to the state of the Federation funds, and for the life of me I do not see how we could arrange it now so as to comply with your request for the appointment of a special representative in South Carolina, especially to assist in the legislative work. The funds of the Federation, so Secretary Morrison informs me, are at a low ebb by reason of which it has been necessary for us to discontinue some\",\n    \"summary\": \"The letter from January 11, 1909, addressed to Mr. Wm. J. Smith, President of the S. C. State Federation of Labor, discusses the sender's recent official business and subsequent meeting with the Executive Council of the American Federation of Labor. The sender explains that, despite his busy schedule, he is writing to address the interview with Mr. Smith and a letter dated January 6th. The letter mentions financial difficulties faced by the Federation, which inhibit the appointment of a special representative in South Carolina.\",\n    \"date\": \"1909-01-11\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 431,
+        "total_tokens": 1414
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

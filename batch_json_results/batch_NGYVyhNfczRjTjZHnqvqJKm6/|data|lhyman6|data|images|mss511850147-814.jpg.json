@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_Savo9oTAfOr5t6D3JwmuuM87",
+  "custom_id": "|data|lhyman6|data|images|mss511850147-814.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "826ef96a40d6b0b153935bd50522d4f7",
+    "body": {
+      "id": "chatcmpl-9jSuCDJloxvFIg0XmGQcaktkoY3OV",
+      "object": "chat.completion",
+      "created": 1720622900,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mr. T. V. O'Connor, --\\nmay soon be changed for the better. It is also sincerely to be\\nhoped that in view of the great contest in which the Hatters are\\nengaged that an extraordinary effort will be made by you in order\\nthat the financial assistance provided by the Constitution may be\\nreadily rendered.\\n\\nWith hopes for success and that I may hear from you whe-\\never convenient, I am,\\n\\nFraternally Yours,\\n\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter addresses Mr. T. V. O'Connor, expressing hope for a better future and urging extraordinary efforts to provide financial assistance as specified by the Constitution. The writer looks forward to hearing from Mr. O'Connor at his convenience and is signed by the President of the American Federation of Labor.\",\n    \"date\": \"YYYY-MM-DD\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 214,
+        "total_tokens": 1197
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

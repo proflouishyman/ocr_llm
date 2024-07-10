@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_GMyWF2V2QXWzrM2yyYHCsazB",
+  "custom_id": "|data|lhyman6|data|images|mss511850154-302.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "7134ccc947332bc8c9b690beb54ae8aa",
+    "body": {
+      "id": "chatcmpl-9jSu4vHnY85vx98mnHXu3EZaijQaU",
+      "object": "chat.completion",
+      "created": 1720622892,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Hon. Reuben O. Moon --\\n\\nstatute law, fully establish, justice and equality before the law of all our people.\\n\\nIn the meantime, we shall protest against the enactment of a bill of the character and species of which yours is a type.\\n\\nRespectfully yours,\\n\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter is addressed to Hon. Reuben O. Moon, expressing a commitment to establish justice and equality under statute law for all people. It includes a statement of protest against a particular type of bill that Moon's is representative of.\",\n    \"date\": \"YYYY-MM-DD\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 162,
+        "total_tokens": 1145
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_ZKNOs4vvc7eGL8lNlXkCPpWW",
+  "custom_id": "|data|lhyman6|data|images|mss511850151-440.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "1d3bd5a8176857c6d4435204427a3827",
+    "body": {
+      "id": "chatcmpl-9jSuAuRpqCRGXfklVzVBtvJJUDUkW",
+      "object": "chat.completion",
+      "created": 1720622898,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Z\\nDec. 3, 1909.\\nMr. L. A. Gardner, Editor and Manager,\\n\u201cKicks and Comments, Official Journal C. L. U.,\\nWarren, Pa.\\nDear Sir and Brother:\\n\\nYour favor of November 13th, addressed to me at Toronto, Canada, during the convention of the Federation was duly received but as you can very readily understand I had no opportunity what-over to reply, owing to the work of the convention being so absorbing and engrossing.\\n\\nI have not time now to argue with you the matter which you present. However, if you have any suggestion to make in regard to increasing the circulation of the AMERICAN FEDERATIONIST whereby better terms can be secured in any way for the advantage of the A. F. of L. and the publication itself I shall be glad to have you submit them to me and I assure you they will be given the very best consideration.\\n\\nWith kind regards and best wishes, I am\\nFraternally yours,\\n\\nPresident, \\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter, dated December 3, 1909, is addressed to Mr. L.A. Gardner. It acknowledges the receipt of Gardner's letter from November 13th during a convention in Toronto. The author explains the delay in response due to being occupied with the convention. They can't address Gardner's matter at that moment but invite suggestions for increasing the circulation of the American Federationist publication. These suggestions will be given due consideration. The letter ends with kind regards and best wishes.\",\n    \"date\": \"1909-12-03\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 366,
+        "total_tokens": 1349
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

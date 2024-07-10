@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_bI2JMEyGY0fFjSfy0ccBUh5p",
+  "custom_id": "|data|lhyman6|data|images|mss511850151-593.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "93230076c48098aa52f9579894561941",
+    "body": {
+      "id": "chatcmpl-9jSu4PbWPYUzuiygwbcJr7yToP1pw",
+      "object": "chat.completion",
+      "created": 1720622892,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"LF\\n\\nMr. E. E. Greenawalt, President,\\nPennsylvania Federation of Labor,\\n438 Nevin Street, Lancaster, Pa.\\n\\nDear Sir and Brother:\\n\\nYour favor of the fourth instant is received and contents noted. As stated in my previous letter, we will do the best we can in behalf of Pennsylvania.\\n\\nIn your postscript you refer to the special convention of the State Branch to be held at Harrisburg next Thursday, December 9th and request that I should be present.\\n\\nIn reply I beg to say that by direction of the Toronto Convention I shall, if permitted by the court, be in Cincinnati on that date to attend the Convention of the Brotherhood of Painters, Paper Hangers and Decorators. Then from there I go to Pittsburg to attend the conference of the executive officers of national and international unions as further directed by the Toronto Convention. You will thus see that it will not be within my power to attend your Convention of the 9th.\\n\\nWith kind regards, and hoping to hear from you whenever convenient, I am, Fraternally yours,\\n\\nPresident\\nAmerican Federation of Labor.\",\n    \"summary\": \"President of the American Federation of Labor responds to Mr. Greenawalt, acknowledging receipt of his letter and explaining his inability to attend the special convention in Harrisburg due to prior commitments in Cincinnati and Pittsburgh.\",\n    \"date\": \"1909-12-07\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 326,
+        "total_tokens": 1309
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

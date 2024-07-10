@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_hEpkNs4r8WsBXdnoZWzr61sQ",
+  "custom_id": "|data|lhyman6|data|images|mss511850148-795.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "48d6b83a4d9f49832502134b23a2fac9",
+    "body": {
+      "id": "chatcmpl-9jSuDlX2pQaWCQ48hmIuKsP0RX59e",
+      "object": "chat.completion",
+      "created": 1720622901,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"765\\n\\nX.\\n\\nMay 27, 1909.\\n\\nMr. William A. Davis, Secretary,\\nCentral Labor Union,\\nBox 514, Norfolk, Virginia.\\n\\nDear Sir and Brother:\\n\\nI have just been advised that the evening paper, the News Leader of Richmond, Virginia, of Wednesday evening, May 26th, contains a statement that I am to be at Norfolk and deliver an address on the occasion of the Labor Day celebration, Labor Day, 1909.\\n\\nI presume that this is an error and not authorized by your Central Body. I know nothing that would give me greater pleasure than if I could be with you on the occasion of Labor Day celebration. As you know, I am not averse to serve in that capacity in the past but the American Federation of Labor has directed that I undertake an European trip of investigation of industrial conditions and nothing unforeseen occurring I shall not have the pleasure of being in the United States on the forthcoming Labor Day.\\n\\nThe purpose of my writing is to avoid any misapprehension on the part of any one regarding this matter, and I ask you to kindly see that correction is made.\\n\\nWishing you every success, both Labor Day and at all other times, I am, with best wishes,\\n\\nFraternally yours,\\n\\nSamuel Gompers,\\nPresident,\\nAmerican Federation of Labor.\\n\",\n    \"summary\": \"Samuel Gompers, President of the American Federation of Labor, informs William A. Davis, Secretary of the Central Labor Union, that he will not be able to attend the Labor Day celebration in Norfolk, Virginia, as incorrectly reported by a newspaper. Gompers explains that he will be on a European trip for industrial investigation during that time and requests that the misinformation be corrected.\",\n    \"date\": \"1909-05-27\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 412,
+        "total_tokens": 1395
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

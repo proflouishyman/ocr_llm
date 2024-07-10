@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_ZwIo1co2rca7qG5s8UA5WI6g",
+  "custom_id": "|data|lhyman6|data|images|mss511850154-524.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "5cc45116b95c0a35b28ca1d70402e223",
+    "body": {
+      "id": "chatcmpl-9jSuATjzKqDk58j1BKognGTjROf0w",
+      "object": "chat.completion",
+      "created": 1720622898,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"March 10, 1910.\\n\\nMr. Edward McGerry, Secretary,\\nLocal No. 888 United Brotherhood of Carpenters and Joiners,\\nClinton, Mass.\\n\\nDear Sir and Brother:\\n\\nYour favor of the 1st instant is at hand, addressed to Secretary Morrison, in which you state that Michael J. King, is recommended for appointment as volunteer organizer for Clinton and vicinity.\\n\\nIt affords me pleasure to comply with the request and recommendation made, and commission will be issued and forwarded to Brother King in accordance therewith.\\n\\nThere will also be forwarded to him a package of literature and documents published by this office which I am sure he will find of assistance in the discharge of his duties as the representative of the A. F. of L. for that section.\\n\\nWith kind regards, and hoping to hear from you whenever convenient, I am,\\nFraternally yours,\\n\\nPresident\\nAmerican Federation of Labor.\",\n    \"summary\": \"This letter, dated March 10, 1910, is addressed to Mr. Edward McGerry, the Secretary of Local No. 888 United Brotherhood of Carpenters and Joiners in Clinton, Massachusetts. The letter informs him that Michael J. King's appointment as a volunteer organizer has been approved. It mentions that a commission and a package of literature and documents will be sent to Mr. King to assist him in his duties.\",\n    \"date\": \"1910-03-10\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 335,
+        "total_tokens": 1318
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

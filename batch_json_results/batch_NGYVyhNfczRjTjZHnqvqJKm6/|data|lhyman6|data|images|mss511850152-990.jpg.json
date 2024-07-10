@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_5MSYYoGNPROxgi9q3JcqAcov",
+  "custom_id": "|data|lhyman6|data|images|mss511850152-990.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "bc40ed3ff8744b203647029158b5b599",
+    "body": {
+      "id": "chatcmpl-9jSuDAXaGh515xDK7rZ1I874JJytQ",
+      "object": "chat.completion",
+      "created": 1720622901,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Copy.\\n\\nLF\\n\\nJanuary 24, 1910\\n\\nWhen replying kindly refer to Resolution #56.\\n\\nMr. D. D' Alessandro, President,\\nInternational Hod Carriers and Building Laborers' Union,\\nc/o Box 597, Albany, N. Y.\\n\\nDear Sir and Brother:\\n\\nThe Executive Council of the American Federation of Labor at its recent meeting held at headquarters, had under consideration, among other matters, the subject of Resolution #56 of the Toronto Convention, being the appeal of the Hod Carriers and the Building Laborers International Union against the decision of the Building Trades Department of the A. F. of L. at its Tampa Convention directing the officers of the Building Trades Department to call a convention for the purpose of forming one international organization in affiliation with the A. F. of L. The entire subject matter was carefully considered and discussed by the Executive Council, and I was authorized to communicate with you advising that if the officers of the Building Trades Department of the A. F. of L. call a convention of the local unions of Hod Carriers and Building Laborers, that the local unions of the organization of which you are president should be represented at such convention.\\n\\nYou will please accept this as official notification of the conclusion of the Executive Council in this case, and the hope is entertained that such action will be taken by your Inter-\\n\",\n    \"summary\": \"The letter, dated January 24, 1910, addresses Mr. D. D' Alessandro, President of the International Hod Carriers and Building Laborers' Union. It informs him about the American Federation of Labor's decision regarding Resolution #56 from the Toronto Convention. The Executive Council has considered the resolution and advises that local unions should be represented at a forthcoming convention called by the Building Trades Department.\",\n    \"date\": \"1910-01-24\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 413,
+        "total_tokens": 1396
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

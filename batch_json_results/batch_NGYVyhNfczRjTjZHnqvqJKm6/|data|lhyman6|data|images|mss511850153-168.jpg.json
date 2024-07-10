@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_4JKsHecv9dgQ9avWHi7Q14bv",
+  "custom_id": "|data|lhyman6|data|images|mss511850153-168.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "f5df5bdb082cd13c2d31f1b1bc96e41e",
+    "body": {
+      "id": "chatcmpl-9jSu6NyQkNUUzuhptwtAx52HMxNgq",
+      "object": "chat.completion",
+      "created": 1720622894,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Hon. Frank S. Monnett \u2013\\n\\nof our fellow workers and the conscience of our fellow citizens, and that the Company may be brought to realize that there are some rights to which the workers are entitled which even that giant Corporation must respect. It is from that point of view in addition to the duty of a decent concept of the duty of citizenship that the charges were presented to the President against the Corporation. I refer you to the copy of \u201cThe Petition to the President\u201d, \u201cLabor's Resistance to the Steel Trust\u201d, and my editorials, \u201cThe Coming Investigation\u201d, published in the February issue of the American to find enclosed.\\n\\nLet me assure you that I appreciate the position in which you are placed. Your well-known sympathy for the cause of justice no doubt makes you the subject of many calls upon your time, talents and purse, and I am almost humiliated to think that I have presented to you the matter of coming to Washington to give your assistance in the preparation of the case to be presented to the Attorney General, to whom our charges were referred by the President, and yet it has always been the case, is now, and I suppose will be for a long time, that the poor must help the poor.\\n\\nThe American Federation of Labor is made up of the organized wage workers, and we represent not only them but the sufferings and the struggles, the silent yearnings, even of the unorganized. Some who know marvel at what has been done and is being done by the American Federation of Labor and what it aims to do in the interest of the people, with the small means at our command. It is not generally known that the American Federation of Labor performs all its work from a revenue of one-half cent per month from the members of affiliated organizations. It is necessary for us to carry an office force varying from thirty-five to sometimes sixty-five employees. We publish a monthly magazine. We\",\n    \"summary\": \"The letter addresses Hon. Frank S. Monnett, discussing the importance of recognizing workers' rights and presenting charges to the President against a corporation. References are made to various documents enclosed. The letter appreciates Monnett's efforts for justice, highlighting the struggles of wage workers represented by the American Federation of Labor and their ongoing efforts despite limited resources. The American Federation of Labor operates on minimal dues from affiliated organizations and publishes a monthly magazine.\",\n    \"date\": \"\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 514,
+        "total_tokens": 1497
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

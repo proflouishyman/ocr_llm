@@ -5,12 +5,12 @@ from openai import OpenAI
 from tqdm import tqdm
 
 # Variables
-API_KEY_FILE = "api_key.txt"
+API_KEY_FILE = "/data/lhyman6/api_key.txt"
 IMAGE_DIR = "/data/lhyman6/data/images/"  # Directory containing image files
 PROMPT_FILE = "/data/lhyman6/OCR/scripts/ocr_llm/gompers_ocr_prompt.txt"  # File containing the prompt
 API_URL = "https://api.openai.com/v1/chat/completions"
 BATCH_DIR = "batch"
-DESCRIPTION = "test gompers upload"
+DESCRIPTION = "test3 gompers upload"
 VALID_IMAGE_TYPES = [".jpg", ".jpeg", ".png"]
 MAX_BATCH_SIZE_BYTES = 95 * 1024 * 1024  # slightly less than 100 MB
 MAX_BATCHES = 1  # Set the maximum number of batches to process
@@ -21,7 +21,7 @@ def read_prompt(prompt_file):
     with open(prompt_file, "r") as file:
         return file.read().strip()
 
-def create_jsonl_entry(image_path, prompt, custom_id, model="gpt-4o"):
+def create_jsonl_entry(image_path, prompt, custom_id, model="gpt-4o"): #do not change model
     """Create a JSONL entry for batch processing."""
     with open(image_path, "rb") as img_file:
         img_data = base64.b64encode(img_file.read()).decode('utf-8')
@@ -31,12 +31,30 @@ def create_jsonl_entry(image_path, prompt, custom_id, model="gpt-4o"):
     body = {
         "model": model,
         "messages": [
-            {"role": "user", "content": {"type": "text", "text": prompt}},
-            {"role": "user", "content": {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{img_data}"}}}
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": prompt
+                    },
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:{mime_type};base64,{img_data}"
+                        }
+                    }
+                ]
+            }
         ],
-        "max_tokens": 4000
+        "max_tokens": 4000  # Set max_tokens to 4000 to ensure the full response is received
     }
-    return {"custom_id": custom_id, "method": "POST", "url": "/v1/chat/completions", "body": body}, img_data_size
+    return {
+        "custom_id": custom_id,
+        "method": "POST",
+        "url": "/v1/chat/completions",
+        "body": body
+    }, img_data_size
 
 def get_files(image_dir):
     """Get all files in the specified directory."""
@@ -60,16 +78,15 @@ def upload_jsonl_file(api_key, jsonl_file_path):
     """Upload the JSONL file to OpenAI for batch processing."""
     client = OpenAI(api_key=api_key)
     with open(jsonl_file_path, "rb") as jsonl_file:
-        batch_input_file = client.files.create(
+        return client.files.create(
             file=jsonl_file,  # Use the file object directly
             purpose="batch"
         )
-    return batch_input_file
 
 def create_batch(api_key, batch_input_file_id, description):
     """Create a batch using the uploaded JSONL file ID."""
     client = OpenAI(api_key=api_key)
-    batch = client.batches.create(
+    return client.batches.create(
         input_file_id=batch_input_file_id,
         endpoint="/v1/chat/completions",
         completion_window="24h",
@@ -77,7 +94,6 @@ def create_batch(api_key, batch_input_file_id, description):
             "description": description
         }
     )
-    return batch
 
 def serialize_batch(batch):
     """Serialize the batch object into a JSON-serializable dictionary."""
@@ -104,7 +120,6 @@ def serialize_batch(batch):
         },
         "metadata": batch.metadata
     }
-
 
 if __name__ == "__main__":
     print("Reading API key from file...")
@@ -149,14 +164,28 @@ if __name__ == "__main__":
         write_jsonl_file(batch_entries, jsonl_file)
         print(f"JSONL file {jsonl_file} created and uploaded successfully.")
 
+        print("Creating batch...")
         batch_input_file = upload_jsonl_file(API_KEY, jsonl_file)
         batch = create_batch(API_KEY, batch_input_file.id, DESCRIPTION)
         print("Batch created successfully. Batch details:")
+
         batch_details = serialize_batch(batch)
         print(json.dumps(batch_details, indent=2))
 
-        # Clean up
+        # Save the batch details as a text file in the batch directory
+        if not os.path.exists(BATCH_DIR):
+            os.makedirs(BATCH_DIR)
+        batch_file_path = os.path.join(BATCH_DIR, f"{batch.id}.txt")
+        with open(batch_file_path, "w") as batch_file:
+            batch_file.write(json.dumps(batch_details, indent=2))
+
+        print(f"Batch details saved to {batch_file_path}")
+
+        # Delete the JSONL file after upload
         if os.path.exists(jsonl_file):
             os.remove(jsonl_file)
-        batch_index += 1
+            print(f"Deleted JSONL file {jsonl_file}")
 
+        # Adjust the length of filtered_image_files to remove processed files
+        filtered_image_files = filtered_image_files[len(valid_batch_files):]
+        batch_index += 1

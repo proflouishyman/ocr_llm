@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_uOCyO4HqRgT48tM2TvzHzrjO",
+  "custom_id": "|data|lhyman6|data|images|mss511850147-93.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "9b8555473a15bf9d3b932e4b6bcd9771",
+    "body": {
+      "id": "chatcmpl-9jSu5NOGEZvIQgR2EkNaCSL8i4Sqd",
+      "object": "chat.completion",
+      "created": 1720622893,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"April 5, 1909.\\nMr. W. G. Peth, Member, C.M.I. of A. No. 283,\\nThe Naples Hotel,\\nNaples, N.Y.\\nDear Sir and Brother:\\nIn compliance with the request contained in your favor of the 3rd Inst., I am sending to you under separate cover a copy of the 'History of Trade Unions', which I think will contain the information you desire.\\nWith best wishes, I am\\nFraternally yours,\\nSam[l?]ompersi\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter, dated April 5, 1909, from the President of the American Federation of Labor to Mr. W. G. Peth, acknowledges a request from April 3 and mentions sending a copy of the 'History of Trade Unions' to provide the desired information.\",\n    \"date\": \"1909-04-05\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 228,
+        "total_tokens": 1211
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

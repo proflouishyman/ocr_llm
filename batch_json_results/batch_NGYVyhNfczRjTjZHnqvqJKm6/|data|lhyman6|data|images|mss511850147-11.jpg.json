@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_1RvVIPSoyD3kA6fqFXpSuLCU",
+  "custom_id": "|data|lhyman6|data|images|mss511850147-11.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "6fa75b41a4905dfa7b48009abfce189f",
+    "body": {
+      "id": "chatcmpl-9jSu8uxdj2ehbmwcQwO2dcyUAeZmR",
+      "object": "chat.completion",
+      "created": 1720622896,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Hayes D. A. S 235\\nHart Frank P.O. 914-996\\nHarvard W. T. 75\\nHarrenman John 99\\nHarrery L. C. 112\\nHamilton W. Grant 195-675\\nHaymer R. S 243\\nHalberstok R. 256-703-704\\nHealy Timothy 264-267\\nHanicon, Charle A. 310-723-983\\nHecht Fred H. 325\\nHayes R. R. 393\\nHays J. W. 436\\nHede Frederick 443\\nHawley J. H. 450-466-972\\nHardy Daniel 496-777-782\\nHarris J. R. 544-945\\nHarrison John 588\\nHampt Wm 716\\nHauck Will 720\u00bd\\nHarper O. W. 722\\nHart Lee W. 732\\nHayes W. C. 776-791-790\\nHaskell N. R. 984\",\n    \"summary\": \"This document appears to be a list of names followed by numerical values, likely indicating pages or references. It includes both first names or initials and last names, with some entries having multiple numerical ranges associated with them.\",\n    \"date\": \"\",\n    \"is_printed\": false,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 303,
+        "total_tokens": 1286
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

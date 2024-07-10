@@ -3,7 +3,7 @@
 # Script to check the status of batches, download the output files if the batches are completed,
 # extract each line from JSONL result files into individual JSON files named by custom_id,
 # and extract the "content" field from each JSON file into text files next to the original image files.
-# Works closing June 13, 2024
+# Revision July 10 2024
 
 import os
 import json
@@ -11,7 +11,7 @@ import time
 from openai import OpenAI
 
 # Variables
-API_KEY_FILE = "api_key.txt"
+API_KEY_FILE = "/data/lhyman6/api_key.txt"
 BATCH_DIR = "batch"
 COMPLETED_DIR = os.path.join(BATCH_DIR, "completed")
 OUTPUT_DIR = "batch_return"
@@ -94,28 +94,57 @@ def extract_json_lines(result_file, output_dir):
                 json.dump(data, output_file, indent=2)
             print(f"Extracted {custom_id} to {output_file_path}")
 
+
 def extract_content_to_text(json_dir):
-    """Extract the 'content' field from JSON files and save as text files next to the original image files."""
+    """Extract specific fields from JSON files and save as text files next to the original image files."""
     for filename in os.listdir(json_dir):
         if filename.endswith(".json"):
             json_file_path = os.path.join(json_dir, filename)
             with open(json_file_path, "r") as json_file:
                 data = json.load(json_file)
-                custom_id = data.get("custom_id", "unknown_id")
-                original_path = custom_id.replace("|", os.sep)
-                original_dir = os.path.dirname(original_path)
-                original_filename = original_path.split(os.sep)[-1]
+                response_body = data.get('response', {}).get('body', {})
+                choices = response_body.get('choices', [])
                 
-                messages = data.get("response", {}).get("body", {}).get("choices", [])
-                content = ""
-                if messages:
-                    content = messages[0].get("message", {}).get("content", "")
-                if content:
+                if choices:
+                    message_content = choices[0].get('message', {}).get('content', '')
+                    
+                    # Remove the enclosing ```json and ``` markers
+                    if message_content.startswith("```json") and message_content.endswith("```"):
+                        message_content = message_content[7:-3].strip()
+                    
+                    try:
+                        message_json = json.loads(message_content)
+                    except json.JSONDecodeError:
+                        print(f"Failed to decode JSON content for {filename}")
+                        continue
+
+                    # Extract required fields
+                    ocr_text = message_json.get("ocr_text", "")
+                    summary = message_json.get("summary", "")
+                    date = message_json.get("date", "No Date Provided")
+                    is_printed = message_json.get("is_printed", False)  # Keep as boolean
+                    is_legible = message_json.get("is_legible", False)  # Keep as boolean
+
+                    # Prepare content for output
+                    content = (f"OCR Text: {ocr_text}\n"
+                               f"Summary: {summary}\n"
+                               f"Date: {date}\n"
+                               f"Printed: {is_printed}\n"  # Output boolean directly
+                               f"Legible: {is_legible}")  # Output boolean directly
+
+                    custom_id = data.get("custom_id", "unknown_id")
+                    original_path = custom_id.replace("|", os.sep)
+                    original_dir = os.path.dirname(original_path)
+                    original_filename = original_path.split(os.sep)[-1]
+
+                    # Save the content to a text file
                     text_filename = f"{original_filename}.txt"
                     text_file_path = os.path.join(original_dir, text_filename)
+                    os.makedirs(original_dir, exist_ok=True)
                     with open(text_file_path, "w") as text_file:
                         text_file.write(content)
                     print(f"Extracted content of {custom_id} to {text_file_path}")
+
 
 def process_result_files(result_dir, extraction_base_dir, batch_id):
     """Process all JSONL files in the specified directory and extract them to individual JSON files."""
@@ -129,6 +158,7 @@ def process_result_files(result_dir, extraction_base_dir, batch_id):
             print(f"Processing file: {result_file_path}")
             extract_json_lines(result_file_path, extraction_output_dir)
             extract_content_to_text(extraction_output_dir)
+
 
 def replace_escape_sequences(content):
     """Replace escape sequences with placeholders."""

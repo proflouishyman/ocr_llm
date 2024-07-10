@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_cAoyz5xFERmzcwrqDjFvudPb",
+  "custom_id": "|data|lhyman6|data|images|mss511850146-291.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "9a8b2d7ad6ae999cbffcc89ff3dbfd64",
+    "body": {
+      "id": "chatcmpl-9jSuBbBC5A3r5J0skRbIPIl45wNHy",
+      "object": "chat.completion",
+      "created": 1720622899,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Personal.                              Z                             March 12, 1909\\nMr. D. A. Hayes,\\n930 Witherspoon Building,\\nPhiladelphia, Pa.\\n\\nDear Friend:\\n\\nWhen I saw you Sunday in Philadelphia I felt so keenly the great loss you have sustained both personally and officially by the death of Mr. Dunn that I really did not have the heart to try and convey to you even in a small degree my feelings when I learned of his death. For myself, I counted him as one of my best friends, and knowing so well how you regarded him, not only as one of your best friends personally, but also in an official capacity, I sympathized with you in your loss, a loss not only to you but to the organization and to the general labor movement.\\n\\nWith sincere regrets, believe me to be\\nAlways your friend,\\n\",\n    \"summary\": \"The letter acknowledges the personal and professional loss felt by Mr. Hayes due to Mr. Dunn's death. The sender expresses sympathy and shared grief, recognizing the significance of Mr. Dunn's death to Mr. Hayes and the broader labor movement.\",\n    \"date\": \"1909-03-12\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 272,
+        "total_tokens": 1255
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_tJZmWFpQnkIGg6rx9GwERJAz",
+  "custom_id": "|data|lhyman6|data|images|mss511850155-1060.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "23150af1da7258967ae5c98d74737d4d",
+    "body": {
+      "id": "chatcmpl-9jSu8ZJoBYqzvzNIFwxE0kqZoNzBm",
+      "object": "chat.completion",
+      "created": 1720622896,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"M April 23, 1910.\\n\\nHon. Charles Q. Tirrell, Member,\\nJudiciary Committee of the House of Representatives,\\nWashington, D.C.\\n\\nDear Sir:\\n\\nThe workers of our country have been patiently waiting for some action on the part of the Judiciary Committee to report out bills affecting the status of labor and to grant relief in so far as is concerned in the application of the Sherman Anti-Trust Law to the voluntary organizations of the workers, and also relief from the abuse of the injunctive writ.\\n\\nNumbers of articles in review of the situation have been written and printed, all of which have been forwarded to each member of Congress.\\n\\nIt is noted with much interest and great regret that some bills have been presented dealing with these subjects, and which instead of bringing relief will simply fix more definitely the wrongful situation and make it more acute. One of the bills to which I refer is the one introduced in the House by the Hon. Reuben O. Moon of Pennsylvania. When I saw a copy of the bill and studied its features, I addressed a letter to Mr. Moon, and believing you should have a copy thereof, I enclose it herein. It is commended to your\",\n    \"summary\": \"This letter, dated April 23, 1910, is addressed to Hon. Charles Q. Tirrell, a member of the Judiciary Committee of the U.S. House of Representatives. It discusses the need for the committee to take action on bills affecting labor status and provides relief under the Sherman Anti-Trust Law. The writer expresses concern about some recently presented bills aggravating the situation. The letter mentions a specific bill introduced by Hon. Reuben O. Moon of Pennsylvania and includes a copy of a letter addressed to Mr. Moon.\",\n    \"date\": \"1910-04-23\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 407,
+        "total_tokens": 1390
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

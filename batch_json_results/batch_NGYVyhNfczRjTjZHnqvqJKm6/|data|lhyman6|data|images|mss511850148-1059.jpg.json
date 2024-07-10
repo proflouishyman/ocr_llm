@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_2ESPqgRxP04lgs3wreR0no2p",
+  "custom_id": "|data|lhyman6|data|images|mss511850148-1059.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "043a9204c31178110203b41a148a222f",
+    "body": {
+      "id": "chatcmpl-9jSu5GgL3KzopKKLSd5aQ94Vq1oHb",
+      "object": "chat.completion",
+      "created": 1720622893,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"1027\\n\\nJune 5, 1909\\n\\nMr. Ed. Rosenberg, Secretary,\\nUnited Fishermen of the Pacific,\\n5 Astor St., Astoria, Oregon.\\n\\nDear Sir and Brother:\\n\\nYour favor of May 10th has been duly received and\\ncontents noted. In compliance with your request I have sent\\nto Messrs. Ralston and Siddons the letter you enclose to them\\nsigned by you and Mr. Lorntoen, and have requested that they\\ngive the matter their attention. You will in all probability\\nhear from them at an early date. I would endeavor to have an\\ninterview with Messrs. Ralston and Siddons, as you suggest, but\\nas I have so little time, owing to my having arranged to start on\\nmy trip abroad on June 19th you can very readily imagine there are\\ninnumerable matters to which I must give my attention before leav-\\ning and for which arrangements must be made incident to my long\\nabsence from this country.\\n\\nAlthough I will be away from headquarters for the next\\nthree months yet you will understand that my work and correspondence\\nwill be promptly attended to during my absence so have no hesitancy\\nin writing and upon any matter you may feel disposed.\\n\\nWith best wishes, I am\\nFraternally yours,\\n\\n[Signature]\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter, dated June 5, 1909, from the President of the American Federation of Labor, acknowledges receipt of a letter from Mr. Ed. Rosenberg, Secretary of the United Fishermen of the Pacific. The writer states that he has forwarded the letter to Messrs. Ralston and Siddons as requested. He mentions his upcoming trip abroad on June 19th and assures that despite his three-month absence, his work and correspondence will be handled promptly.\",\n    \"date\": \"1909-06-05\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 442,
+        "total_tokens": 1425
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_PKoVdqfehXzorLEZSfHNTsXI",
+  "custom_id": "|data|lhyman6|data|images|mss511850150-313.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "c3b256fe121246a936a6c12db7b7a48e",
+    "body": {
+      "id": "chatcmpl-9jSu8qQouxR7QYl6IrH6A7Q4xkN46",
+      "object": "chat.completion",
+      "created": 1720622896,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n    \"ocr_text\": \"LF\\nSept. 10, 1909\\n\\nMr. Harry L. Cook,\\nc/o D. F. Featherson,\\n142 East 59th St., New York, N.Y.\\n\\nDear Sir:\\n\\nIn the absence of President Gompers I beg to acknowledge receipt of your favor of September 9th, in which you enclose clipping from the Newark Star of September 6th. You will please accept Mr. Gompers' thanks for your courtesy.\\n\\nVery truly yours\\n[Signature]\\nSecretary to President Gompers.\",\n    \"summary\": \"The letter, dated September 10, 1909, acknowledges receipt of a previous letter from September 9th, which included a newspaper clipping from the Newark Star dated September 6th. The sender extends thanks on behalf of President Gompers.\",\n    \"date\": \"1909-09-10\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 212,
+        "total_tokens": 1195
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

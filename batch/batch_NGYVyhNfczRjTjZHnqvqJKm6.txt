@@ -1,0 +1,25 @@
+{
+  "id": "batch_NGYVyhNfczRjTjZHnqvqJKm6",
+  "object": "batch",
+  "endpoint": "/v1/chat/completions",
+  "errors": null,
+  "input_file_id": "file-M2GB3aXJDUCwrbhd5y6uXp0W",
+  "completion_window": "24h",
+  "status": "validating",
+  "output_file_id": null,
+  "error_file_id": null,
+  "created_at": 1720622883,
+  "in_progress_at": null,
+  "expires_at": 1720709283,
+  "completed_at": null,
+  "failed_at": null,
+  "expired_at": null,
+  "request_counts": {
+    "total": 0,
+    "completed": 0,
+    "failed": 0
+  },
+  "metadata": {
+    "description": "test3 gompers upload"
+  }
+}

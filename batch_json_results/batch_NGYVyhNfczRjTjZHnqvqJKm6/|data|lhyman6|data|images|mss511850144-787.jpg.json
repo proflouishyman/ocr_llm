@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_HGyQ6ZgkX9LafubVJuIHL6bg",
+  "custom_id": "|data|lhyman6|data|images|mss511850144-787.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "7d1bf0f9cf61b1d8bc3df161c6ed3b08",
+    "body": {
+      "id": "chatcmpl-9jSuEhUoYR1qaomACkKzC2N9s2lbb",
+      "object": "chat.completion",
+      "created": 1720622902,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mr. John A. Moffitt, President,\\nUnited Hatters of North America,\\n11 Waverly Pl., Room 15,\\nNew York, N. Y.\\n\\nFeb. 1, 1909.\\n\\nDear Sir and Brother:\\n\\nIn conformity with the action of the Denver Convention of the American Federation of Labor, the undersigned invited five union label organizations to direct their respective representatives to meet in conference with him at the headquarters of the American Federation of Labor Jan. 22nd. The conference was held on that date and there were given attention the several matters which the Denver Convention directed should be submitted to this union label conference, together with matter referred to it by the Executive Council at its latest meeting.\\n\\nHowever, the matter to which I especially desire to call your attention are the preambles and resolutions adopted by this conference requesting the Executive Council to render your organization all possible assistance in its controversy with the National Association of Hat Manufacturers, and also requesting that all affiliated organizations shall make a special effort to create a demand for the label of the United Hatters of North America. In conformity therewith, I beg to advise you that I have communicated the above to the Executive Council and the of-\",\n    \"summary\": \"The letter, addressed to Mr. John A. Moffitt, President of the United Hatters of North America, discusses a conference held on January 22, 1909, following the action of the Denver Convention of the American Federation of Labor. It mentions inviting union label organizations and addressing several matters. The letter also highlights the adoption of preambles and resolutions that request the Executive Council to assist in a controversy with the National Association of Hat Manufacturers and to create a demand for the label of the United Hatters of North America.\",\n    \"date\": \"1909-02-01\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 404,
+        "total_tokens": 1387
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

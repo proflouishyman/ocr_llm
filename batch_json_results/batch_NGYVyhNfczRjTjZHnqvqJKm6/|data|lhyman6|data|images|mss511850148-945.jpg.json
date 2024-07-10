@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_0X3nFEVI5cn4gbk1z2hYlKHO",
+  "custom_id": "|data|lhyman6|data|images|mss511850148-945.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "7c9b10422244987db5ce95ecfc6f2fb4",
+    "body": {
+      "id": "chatcmpl-9jSu4fB8b87ijN4DIYyO6mL419zSq",
+      "object": "chat.completion",
+      "created": 1720622892,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"X. June 2, 1909.\\n\\nMr. Matt Comerford, President,\\nInternational Union of Steam Engineers, 486 East 8th Street, Brooklyn, New York.\\n\\nDear Sir and Brother:\\n\\nEnclosed you will please find copy of letter under date of June first addressed to me by the Chief Engineers of L. Dimond & Sons of Providence, Rhode Island. The receipt of this letter has been acknowledged with the information that the matter referred to you as President of the organization having jurisdiction in the matter. I would therefore like your advice as to what reply I should make to the enclosed.\\n\\nHoping to hear from you at your early convenience and with kind regards, I am,\\n\\nFraternally yours,\\n\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter, dated June 2, 1909, is from a president of the American Federation of Labor to Mr. Matt Comerford, the president of the International Union of Steam Engineers. It encloses a previous letter dated June 1 and asks for advice on how to respond.\",\n    \"date\": \"1909-06-02\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 268,
+        "total_tokens": 1251
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

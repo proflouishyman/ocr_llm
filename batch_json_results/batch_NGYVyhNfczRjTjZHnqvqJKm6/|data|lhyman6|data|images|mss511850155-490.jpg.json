@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_xvYcsly3YZIFzrwkzEu9tYMf",
+  "custom_id": "|data|lhyman6|data|images|mss511850155-490.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "5933ec66b3c5ac8254435555388fde9e",
+    "body": {
+      "id": "chatcmpl-9jSu8MLbVc64VnuMmOX3YXrbQptPH",
+      "object": "chat.completion",
+      "created": 1720622896,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mr. Wm. P. Mcveill\\nour movement that there should be unity and co-operation of effort among all the wage earners of the country.\\nTrusting that I may hear from you in regard to the above at your early convenience, I am, with best wishes,\\nFraternally yours,\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"A letter addressed to Mr. Wm. P. Mcveill discussing the importance of unity and cooperation amongst wage earners in the country. The sender expresses their hope to hear back soon and sends best wishes.\",\n    \"date\": null,\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 156,
+        "total_tokens": 1139
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

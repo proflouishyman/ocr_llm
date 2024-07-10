@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_aFWWGn6InzxJlYhDssLF9Im4",
+  "custom_id": "|data|lhyman6|data|images|mss511850147-701.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "2a66877a4e37f237c96fe78654ca5575",
+    "body": {
+      "id": "chatcmpl-9jSuDyvg5scMLfZ2LL0amhIpSDV6C",
+      "object": "chat.completion",
+      "created": 1720622901,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"AH\\n\\n655\\n\\nApril 26th, 1909.\\n\\nTO WHOM IT MAY CONCERN:\\n\\nThis is to certify that C. C. Hoffman\\nis duly authorized to install the officers and initiate the members\\nof Federal Labor Union #9413 of Gastonia, North Carolina.\\n\\nFraternally yours,\\n\\nSamuel Gompers\\nPresident.\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter, dated April 26th, 1909, authorizes C. C. Hoffman to install officers and initiate members of Federal Labor Union #9413 in Gastonia, North Carolina. It is signed by Samuel Gompers, President of the American Federation of Labor.\",\n    \"date\": \"1909-04-26\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 189,
+        "total_tokens": 1172
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

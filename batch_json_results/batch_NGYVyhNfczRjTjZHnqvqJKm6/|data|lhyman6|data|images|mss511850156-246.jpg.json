@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_QO9Y33PeN17HmXcqvmhLXzom",
+  "custom_id": "|data|lhyman6|data|images|mss511850156-246.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "f1af1ccb723d9f6aebd693fcea4e160b",
+    "body": {
+      "id": "chatcmpl-9jSuDUjJIZUgO7RaHP6MRo6XL56WL",
+      "object": "chat.completion",
+      "created": 1720622901,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"X.\\nApr. 29,1910.\\nHon. George K. Turner,\\nSpokane,\\nWashington.\\nDear Sir:\\nI am glad to have the opportunity to lay the matter before\\nyou referred to in my telegram to you of the 27th instant, and your\\nwire that you will be in Spokane until May tenth; that you will\\nsail for the Hague and return to the United States by October first,\\nseems to give the opportunity which I am seeking, that is, your\\nassistance in the appeal of the Hatters' case from the Federal Cir-\\ncuit Court of Connecticut to the Court of Appeals and perhaps if\\nnecessary to the Supreme Court of the United States.\\nFirst and foremost, I should say that I have been entirely\\ndissatisfied in the way the case has been handled all the way through\\nand when the question was certified to by the Federal Court of\\nAppeals to the Supreme Court for decision, and later the argument\\nmade thereon, after listening to the argument I expressed to our\\nfriends and to their counsel my dissatisfaction in the most emphatic\\nterms as to the manner in which the case was presented and argued\\nby the Hatters' attorneys. Of course you know that inst the United\\nStates Supreme Court decided that under the certified question D. E.\\nLoew and Company could maintain a course of action under the Sherman\",\n    \"summary\": \"This document is a letter dated April 29, 1910, addressed to Hon. George K. Turner of Spokane, Washington. The writer expresses the desire to discuss a matter previously mentioned in a telegram. They acknowledge Turner's upcoming travels and seek his assistance in appealing the Hatters' case from the Federal Circuit Court of Connecticut through to the Court of Appeals, and possibly to the Supreme Court. The writer is dissatisfied with how the case has been handled and presented, particularly criticizing the Hatters' attorneys.\",\n    \"date\": \"1910-04-29\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 439,
+        "total_tokens": 1422
+      },
+      "system_fingerprint": "fp_298125635f"
+    }
+  },
+  "error": null
+}

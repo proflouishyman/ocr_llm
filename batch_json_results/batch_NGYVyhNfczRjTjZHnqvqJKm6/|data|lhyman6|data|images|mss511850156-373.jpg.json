@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_pdodUZwbyGOVdOiEd8kbQEjP",
+  "custom_id": "|data|lhyman6|data|images|mss511850156-373.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "1f0aea3cc38062eb386870da6842f912",
+    "body": {
+      "id": "chatcmpl-9jSuCsCo01D6mDDq77VbcqsJAqY91",
+      "object": "chat.completion",
+      "created": 1720622900,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"339\\n\\nX.\\n\\nMay 3, 1910.\\n\\nHon. Lyman Beecher Stowe,\\n55 Washington Square,\\nNew York City.\\n\\nDear Sir:\\n\\nIn the absence of President Gompers on official business,\\nI beg to acknowledge receipt of your favor of May 2d, which will\\nbe brought to his attention immediately upon his return to headquarters.\\n\\nVery truly yours,\\n\\nSecretary to\\nPresident Gompers.\",\n    \"summary\": \"The letter, dated May 3, 1910, acknowledges the receipt of a message sent by Hon. Lyman Beecher Stowe on May 2nd. The writer informs that President Gompers is away on official business and the message will be addressed once he returns.\",\n    \"date\": \"1910-05-03\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 203,
+        "total_tokens": 1186
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

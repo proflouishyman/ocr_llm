@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_AmKGqJ9GI0DKT4R62XbRS1mG",
+  "custom_id": "|data|lhyman6|data|images|mss511850145-746.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "1983cb94342b4e6abfe632565eae05d7",
+    "body": {
+      "id": "chatcmpl-9jSuAgJNirwY7MPXFIioPyJeC10or",
+      "object": "chat.completion",
+      "created": 1720622898,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"February 27, 1909\\nMr. Jacob Plesner, Secretary, Journeymen Barbers' International Union, Indianapolis, Indiana\\nDear Sir and Brother:\\nSecretary Morrison has already sent you receipt for the contribution which your organization so kindly made to the legal defense of my colleagues, John Mitchell and Frank Morrison, and myself for the proceedings against us in the courts. It is true that the injunction issue grew out of the matter of the right involved in the bestowal upon, or withdrawal of patronage from, the 'Buck's Stove and Range Company,' but while this is exceedingly important in itself, it sinks into insignificance when the broad question of principle is involved in the matters enjoined by the court's injunction. The court enjoined the American Federation of Labor, its affiliated organizations and their members, throughout the length and breadth of the country, it enjoined the officers of the A.F. of L., its agents, friends, attorneys and all others from printing in the 'American Federationist,' in circular, or writing a letter, or by word of mouth speaking of, or referring to a matter of vital importance. This, you will readily observe, is a denial and invasion of the freedom of the press and of speech to discuss a question for which we all seek relief, the relief which everyone recognizes should be accorded either by judicial decision of the higher courts or at the hands of Congress.\\nMy colleagues and myself had no desire to flagrantly violate\",\n    \"summary\": \"This letter, dated February 27, 1909, from a member of the American Federation of Labor addresses Jacob Plesner, Secretary of the Journeymen Barbers' International Union. It discusses a recent legal battle involving the author and his colleagues, emphasizing the broader principle at stake: the right to free speech and the press. The letter highlights the significance of court injunctions against the American Federation of Labor and its members, which restrict speech and publications, describing these actions as a denial of fundamental freedoms that deserve relief either through the judiciary or Congress.\",\n    \"date\": \"1909-02-27\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 459,
+        "total_tokens": 1442
+      },
+      "system_fingerprint": "fp_298125635f"
+    }
+  },
+  "error": null
+}

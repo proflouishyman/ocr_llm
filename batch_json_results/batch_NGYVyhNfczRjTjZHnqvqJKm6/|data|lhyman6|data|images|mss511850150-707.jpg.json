@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_XBZ3EZIo2RrRFaOJbvPMCOAy",
+  "custom_id": "|data|lhyman6|data|images|mss511850150-707.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "95985015f2af3189ca4229e5ab270719",
+    "body": {
+      "id": "chatcmpl-9jSuBM3A4kjZQaJEBtSZEOa6mXnKL",
+      "object": "chat.completion",
+      "created": 1720622899,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"17                                                                 October   . 1909.\\n\\nDr. W. G. Prezner,\\nPost Office General Delivery,\\nSeattle, Washington.\\n\\nDear Sir:-\\n\\nIn acknowledging receipt of your favor of the 12th instant, \\naddressed to President Gompers, I beg to advise you that at the \\nExecutive Council of the American Federation of Labor is in session \\nat headquarters this week, his time is wholly engrossed with the \\nimmediate work of the Council, and therefore is unable to give \\nany attention to his correspondence.\\n\\nYou will kindly accept this acknowledgment of receipt \\nof your letter until such time he will be able to give the matter \\nabout which you write his personal attention.\\n\\nVery truly yours,\\n\\nP. Lu Grand \\nSecretary to President Gompers.\",\n    \"summary\": \"The letter, dated October 1909, is from P. Lu Grand, the Secretary to President Gompers, to Dr. W. G. Prezner, acknowledging receipt of his letter from the 12th. It informs Dr. Prezner that President Gompers is currently occupied with the Executive Council of the American Federation of Labor and is unable to respond at the moment.\",\n    \"date\": \"1909-10-17\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 298,
+        "total_tokens": 1281
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

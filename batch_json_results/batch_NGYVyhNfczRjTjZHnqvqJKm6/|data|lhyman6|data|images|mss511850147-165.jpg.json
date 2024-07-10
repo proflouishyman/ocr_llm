@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_I7hfvHAEvjCcJm4YYVjZsODp",
+  "custom_id": "|data|lhyman6|data|images|mss511850147-165.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "5ce8e88b2a3fe602400c8c8b73ce7d78",
+    "body": {
+      "id": "chatcmpl-9jSu6Leos6ODAF3yhiBF8vz7U4Bm1",
+      "object": "chat.completion",
+      "created": 1720622894,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n    \"ocr_text\": \"K.\\nMr. Ben Cooper, County Council,\\nc/o Mr. W. C. Steadman,\\n42 Effingham House, Arundel Street,\\nStrand, London, England.\\nApril 7, 1909.\\nDear Sir and Brother:\\nI beg leave to advise you that tentative arrangements\\nhave been made for me to leave New York City on the White Star\\nliner Baltic, embarking Saturday, June 19th, 1909, due at Liverpool\\nabout June 25th.\\nIn all likelihood I shall remain in England about two weeks\\nvisiting several cities, then visit several other countries and\\nreturn. I expect to be in London between July 4th and 8th or 9th.\\nPerhaps I may return to London several times.\\nAs I have already stated, the arrangements on the Baltic\\nfor June 19th, are tentative. If any other arrangements should be\\nnecessary I will advise you.\\nWith best wishes to yourself, which I ask you also to\\nconvey to all our friends in the movement, anticipating the pleasure\\nof seeing you soon, and hearing from you in the meantime, I am,\\nSincerely and fraternally yours,\\n[Signature]\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The author informs Mr. Ben Cooper of tentative travel plans from New York City to Liverpool on the White Star liner Baltic, departing on June 19, 1909, and potentially staying in England and visiting other countries for several weeks. The author expects to be in London between July 4th and 9th and may return multiple times. The author expresses best wishes and looks forward to meeting.\",\n    \"date\": \"1909-04-07\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 386,
+        "total_tokens": 1369
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

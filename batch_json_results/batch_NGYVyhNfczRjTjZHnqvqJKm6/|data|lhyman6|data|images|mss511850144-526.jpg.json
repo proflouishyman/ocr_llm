@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_9v1rhf9GvTOqntOE8ui6I74G",
+  "custom_id": "|data|lhyman6|data|images|mss511850144-526.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "fca502bf11316d7f0b0256a76ffa85cb",
+    "body": {
+      "id": "chatcmpl-9jSuEmYJATLbTbbr8Lqw3rZNkgmEx",
+      "object": "chat.completion",
+      "created": 1720622902,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"ocr_text\": \"Hoping you may find this material of interest and value\\nto you, I am,\\nVery truly yours,\\nSam[illegible signature]\\nPresident\\nAmerican Federation of Labor.\",\n  \"summary\": \"The letter expressed the hope that the recipient finds the enclosed material of interest and value, and was signed by the president of the American Federation of Labor.\",\n  \"date\": \"\",\n  \"is_printed\": true,\n  \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 108,
+        "total_tokens": 1091
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

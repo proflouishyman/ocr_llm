@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_kw9OIpFQnswYryD9uPorS9Hz",
+  "custom_id": "|data|lhyman6|data|images|mss511850145-491.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "ee235d4aeb658f2c3c494fcc85ca33c3",
+    "body": {
+      "id": "chatcmpl-9jSuHfcrvOugFyRqdTwnU0ehZhbRW",
+      "object": "chat.completion",
+      "created": 1720622905,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"the terms of the injunction. When the injunction was issued we die- continued publishing the name of the Buck's Stove and Range Company on the \\\"We Don't Patronize\\\" list of the American Federation of Labor, but editorially and upon the platform I continued to discuss the merits of the case involved and to endeavor to bring to the attention of not only the workers but of all the people the attempt by the injunction process to deny freedom of speech and liberty of the press. Frank Morrison has been sentenced to six months imprisonment, John Mitchell to nine months, and I to one year. The case is being appealed to the higher courts. Every one must agree that that is the Just and proper course to pursue; that though we hope and entertain the belief that the higher courts will reverse so flagrant an order which violates the basic principles guaranteed by the constitution of our country, we should our efforts fail in that direction we certainly must endeavor to secure relief at the hands of the lawmaking power of our country, the Congress of the United States. We shall insist that the Congress of the United States has not the power to pass a law taking the rights of free speech and free assemblage and transforming the right to so consider the laws of our country to the.. Wash iton D. C.,... the leaders of In view of standing as.. my oie, we Your COLG... our ...too. worship God .. the conscience of each individual citizen may dic tat that these principles too sacred to be yielded to a court's consideration. It is our purpose, not simply in our own cases but for the jnction e offenses of our fellow .. violating the constitutional guaranees inherit Priciples of human liberty. Again thanking your organization for your generous contribu- tion for the legal defense of my colleagues and myself, I am, you Fraternally yours, ..cutta Oity, denied, Jrewhtwe .prevent and desire to my colleagues and myself had no desire to illegality President American Federation of Labor.\",\n    \"summary\": \"The document discusses the issuance of an injunction that restricted the publication of Buck's Stove and Range Company by the American Federation of Labor. Despite this, the author continued to discuss the case publicly. Key individuals, including Frank Morrison, John Mitchell, and the author, were sentenced to imprisonment, but they are appealing to higher courts. The author hopes the higher courts will overturn the order, which they believe violates fundamental constitutional principles. They emphasize the need to secure relief through legislation if judicial efforts fail. The document also thanks an organization for their contribution towards legal defense.\",\n    \"date\": \"YYYY-MM-DD\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 557,
+        "total_tokens": 1540
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

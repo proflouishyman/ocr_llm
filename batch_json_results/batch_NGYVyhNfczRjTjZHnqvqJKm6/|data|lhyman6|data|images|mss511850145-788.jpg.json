@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_GjcP5RpTyPKXU1mfGZahhjXX",
+  "custom_id": "|data|lhyman6|data|images|mss511850145-788.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "e0af554cc185cf7b24a412a5ae92396c",
+    "body": {
+      "id": "chatcmpl-9jSuCTdN1bShuM27fhJeVzc4wGY3t",
+      "object": "chat.completion",
+      "created": 1720622900,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mr. Hans Fehlinger---?\\n\\nYes, as you surmised, we have been so crowded for space in the AMERICAN FEDERATIONIST with matter that it was absolutely necessary to publish that we have been unable to publish your usual letter. However, I hope to use it in the next issue.\\n\\nWith kind regards and anticipating meeting you and our other friends next summer, I am\\n\\nYours fraternally, \\n[Signature]\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter addresses Mr. Hans Fehlinger regarding the inability to publish his usual letter due to space constraints in the American Federationist. The sender hopes to include the letter in the next issue and expresses anticipation for meeting Mr. Fehlinger and others next summer.\",\n    \"date\": \"\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 194,
+        "total_tokens": 1177
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_wAqnRfcXqHyeF07qYjLDN7Gk",
+  "custom_id": "|data|lhyman6|data|images|mss511850156-456.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "617da78c967cd58b414b446fb52e3d25",
+    "body": {
+      "id": "chatcmpl-9jSu6xvRjEm4Rc79DOCGPfUsTRGM2",
+      "object": "chat.completion",
+      "created": 1720622894,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```\n{\n    \"ocr_text\": \"LF\\nWashington, D.C. May 7, 1910\\n\\nA. L. Urick\\n411 Eighth St., Des Moines Iowa,\\n\\nMeeting Electrical Workers Special Committee called for Monday ninth at Cleveland postponed.\\n\\nSamuel Gompers\\n(Charge to A.F. of L.)\",\n    \"summary\": \"The letter dated May 7, 1910, from Samuel Gompers informs A. L. Urick at 411 Eighth St., Des Moines, Iowa, that the Electrical Workers Special Committee meeting scheduled for Monday, the ninth in Cleveland, has been postponed.\",\n    \"date\": \"1910-05-07\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 163,
+        "total_tokens": 1146
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_9EsuSso6KRRz6qULFGf3Nmvw",
+  "custom_id": "|data|lhyman6|data|images|mss511850151-345.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "68327dea541c2811782f71a37a7c22e9",
+    "body": {
+      "id": "chatcmpl-9jSuBo7rjeQVPxymltIh03CAO3OqL",
+      "object": "chat.completion",
+      "created": 1720622899,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mr. George C. Roddan, Secretary,\\nTrades and Labor Council,\\n514 Humaine St., New Orleans, La.\\n\\nDear Sir and Brother:\\n\\nI want to acknowledge receipt of your favor of November 19,\\nin which by direction of the Central Trades and Labor Council, you\\nenclose copy of the report of the Committee appointed by the Council,\\nto investigate the report of the charges made by Miss Jean Gordon of\\nNew Orleans in a speech which she delivered in Chicago, in which she\\ncharged the Trades and Labor Council and the Louisiana State Federation\\nof Labor in blocking and thwarting legislation in favor of women and\\nchildren.\\n\\nYou will be interested in knowing that I am sending a copy\\nof this report to the members of the Executive Council of the A. F.\\nof L. for their information. At the same time I want to express my\\nappreciation of the full and comprehensive report made upon the subject.\\n\\nWith kind regards, I am,\\nFraternally yours,\\n\\nPresident\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter acknowledges receipt of a previous communication containing a report regarding accusations made by Miss Jean Gordon against the Trades and Labor Council and the Louisiana State Federation of Labor. The accusations were about blocking legislation favorable to women and children. The letter also mentions sending this report to the Executive Council and expresses appreciation for the comprehensive nature of the report.\",\n    \"date\": \"1909-12-02\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 333,
+        "total_tokens": 1316
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

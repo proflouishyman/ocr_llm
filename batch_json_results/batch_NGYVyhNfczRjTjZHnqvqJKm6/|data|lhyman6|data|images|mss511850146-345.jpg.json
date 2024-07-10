@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_9maLjl4fEnGj5j7nkOV1hC2H",
+  "custom_id": "|data|lhyman6|data|images|mss511850146-345.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "534950d7dd4babf0e0d8a9409bda4f72",
+    "body": {
+      "id": "chatcmpl-9jSuAQn0hM529YIYtTtpYx8702lrL",
+      "object": "chat.completion",
+      "created": 1720622898,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Hon. Alton B. Parker -\\n\\nYour office on April third? If that be agreeable I shall ask Mr.\\nRalston whether he could not come over to New York for that purpose.\\n\\nAgain assuring you of my great respect and unbounded con-\\nfidence, I have the honor to remain,\\n\\nYours very truly,\\n\\nSamuel Gompers\\n\\nPresident,\\nAmerican Federation of Labor.\",\n    \"summary\": \"The writer is proposing a meeting at Alton B. Parker's office on April third and will confirm Mr. Ralston's availability. The writer expresses respect and confidence.\",\n    \"date\": \"unspecified\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 165,
+        "total_tokens": 1148
+      },
+      "system_fingerprint": "fp_298125635f"
+    }
+  },
+  "error": null
+}

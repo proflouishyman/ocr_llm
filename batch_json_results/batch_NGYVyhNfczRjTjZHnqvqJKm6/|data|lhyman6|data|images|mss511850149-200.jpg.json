@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_mWKZWg26obwzgNsIxU1sYih8",
+  "custom_id": "|data|lhyman6|data|images|mss511850149-200.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "31cc1fc431911e8f1b8df91e3ea4b5bf",
+    "body": {
+      "id": "chatcmpl-9jSuAlHKwjLaSEOcY5UGdgIluNXMG",
+      "object": "chat.completion",
+      "created": 1720622898,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"Mrs. Max Morris,\\nHome Address,\\nDenver, Colo.\\n\\nJust learned the awful news of our dear Max's demise. Sophia, Sadie and I are shocked beyond expression. Sympathy and words of condolence are almost meaningless. You, Esther, and Edwin have lost so much in the death of an devoted friend, the labor cause, the human family has lost one of its sincerest and best of advocates and workers. To you he was more than husband and more than father to the children. He was an undying, self-sacrificing friend.\\n\\nIf our love can give you any solace, accept it without bounds. Wire us a word, dear.\\n\\nSAMUEL GOMPERS.\\nCharge A. F. of L.\",\n    \"summary\": \"The letter is a message of condolence from Samuel Gompers to Mrs. Max Morris, mourning the death of Max Morris and expressing deep sorrow and sympathy. Gompers acknowledges the significant loss for the family and the labor cause, highlighting Max's dedication and self-sacrificing nature.\",\n    \"date\": \"1909-06-07\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 260,
+        "total_tokens": 1243
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_84Y8iSp1pmUDBUpI2H5pR36T",
+  "custom_id": "|data|lhyman6|data|images|mss511850155-581.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "9b99b91fd583377cdef52de024e5b3cd",
+    "body": {
+      "id": "chatcmpl-9jSuG5fzxv5pJMm8O7nsI3KWSMoNj",
+      "object": "chat.completion",
+      "created": 1720622904,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"April 12, 1910.\\n\\nMr. S. G. Bordon, Secretary,\\nUnited Brotherhood of Carpenters and Joiners Local No. 48,\\n715 E. McPherson St., Kirkville, Mo.\\n\\nDear Sir and Brother:\\n\\nYours of the 7th instant has been received, in which you state that Local 48 recommends the appointment of A. L. Bartlett as volunteer organizer for Kirkville and vicinity.\\n\\nIt affords me pleasure to comply with the request and recommendation made, and commission will be issued and forwarded to Brother Bartlett in accordance therewith.\\n\\nThere will also be forwarded to him a package of literature and documents published by this office, which I am sure he will find of assistance in the discharge of his duties as the representative of the A. F. of L. for that section.\\n\\nWith kind regards, and hoping to hear from you whenever convenient, I am,\\n\\nFraternally yours,\\n\\nPresident\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter, dated April 12, 1910, from the President of the American Federation of Labor to Mr. S. G. Bordon, acknowledges the recommendation of A. L. Bartlett as a volunteer organizer for Kirkville and vicinity. The President agrees to the request and will send a commission and additional literature to Bartlett to aid in his duties.\",\n    \"date\": \"1910-04-12\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 330,
+        "total_tokens": 1313
+      },
+      "system_fingerprint": "fp_298125635f"
+    }
+  },
+  "error": null
+}

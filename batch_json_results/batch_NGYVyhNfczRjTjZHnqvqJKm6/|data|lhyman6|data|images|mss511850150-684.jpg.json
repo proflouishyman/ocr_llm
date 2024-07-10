@@ -1,0 +1,32 @@
+{
+  "id": "batch_req_I3EGZcyFpujk6OLpm9dCO9FN",
+  "custom_id": "|data|lhyman6|data|images|mss511850150-684.jpg",
+  "response": {
+    "status_code": 200,
+    "request_id": "c700c75fca1e5d37ae84bea1cf533536",
+    "body": {
+      "id": "chatcmpl-9jSuASyiMPSe4iUfs7ae4DikoaJPk",
+      "object": "chat.completion",
+      "created": 1720622898,
+      "model": "gpt-4o-2024-05-13",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n    \"ocr_text\": \"645\\n\\nOct. 15, 1909\\n\\nDF\\nMr. Ed. Stephenson, Organizer,\\nAmerican Federation of Labor,\\n211 Rupert St., Winnipeg, Canada.\\nDear Sir and Brother:\\n\\nYour favor of the 11th instant is received and I thank\\nyou for your kind expressions in regard to my return home after\\nthe European trip. I am indeed glad to get back, but as you can\\nvery readily imagine, there is an enormous amount of work before\\nme previous to the convention, which meets in Toronto, on November\\n8th.\\n\\nI note what you say in regard to the workingmen's\\nCompensation Bill and your request to be put in touch with the\\nLabor Legislation Association. I presume you refer to the\\nAmerican Association for Labor Legislation. If you will write to\\nProf. John R. Commons, University of Wisconsin, Madison, Wisconsin,\\nwho is secretary of this Association, I am sure he will be glad to give you any information within his power.\\n\\nWith kind regards and hoping to hear from you whenever\\nconvenient, I am,\\n\\nFraternally yours,\\n\\n(President)\\nAmerican Federation of Labor.\",\n    \"summary\": \"The letter, dated October 15, 1909, acknowledges a prior correspondence from Mr. Ed. Stephenson and thanks him for his kind words regarding the sender's return from a European trip. The sender mentions the significant amount of work before an upcoming convention in Toronto on November 8. The letter also addresses a request related to workingmen's Compensation Bill and provides guidance on getting in touch with the American Association for Labor Legislation, specifically mentioning Prof. John R. Commons.\",\n    \"date\": \"1909-10-15\",\n    \"is_printed\": true,\n    \"is_legible\": true\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 396,
+        "total_tokens": 1379
+      },
+      "system_fingerprint": "fp_4008e3b719"
+    }
+  },
+  "error": null
+}
