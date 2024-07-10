@@ -1,15 +1,17 @@
 # 2024-07-10
 # This script reads two CSV files, processes the first to keep only Asset and Transcription columns,
 # renames them to id and gold, and merges it with the second CSV file after removing the .jpg extension
-# from the ID column. The resulting DataFrame contains the gold and silver columns and provides statistics
-# on the merge operation.
+# from the ID column. It then reads all .txt.pyte files from a specified directory, merges their content
+# into the existing DataFrame based on the id, and saves the final result.
 
+import os
 import pandas as pd
 
-# Paths to the CSV files
+# Paths to the CSV files and the PYTE directory
 gold_csv_path = '/data/lhyman6/OCR/data/gompers_corrections/bythepeople1.csv'
 silver_csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/silver_ocr_data.csv'
 merged_csv_path = 'complete_bart_training_data.csv'
+pyte_directory_path = '/data/lhyman6/data/images'
 
 # Read the first CSV file (gold data)
 print("Reading the gold CSV file...")
@@ -67,24 +69,43 @@ initial_row_count = len(merged_df)
 merged_df.dropna(subset=['silver'], inplace=True)
 rows_dropped = initial_row_count - len(merged_df)
 
-# Save the merged DataFrame as a new CSV file
-print(f"Saving the merged DataFrame to {merged_csv_path}...")
-merged_df.to_csv(merged_csv_path, index=False)
-print("Merged DataFrame saved successfully.")
+# Read all .txt.pyte files from the specified directory and merge their contents
+print("Reading .txt.pyte files from the specified directory and merging their contents...")
+pyte_data = []
 
-# Print the head of the merged DataFrame
-print("Printing the head of the merged DataFrame:")
-print(merged_df.head())
+for filename in os.listdir(pyte_directory_path):
+    if filename.endswith('.txt.pyte'):
+        id = filename.replace('.txt.pyte', '')
+        with open(os.path.join(pyte_directory_path, filename), 'r') as file:
+            content = file.read()
+            pyte_data.append({'id': id, 'pyte_content': content})
+
+pyte_df = pd.DataFrame(pyte_data)
+
+# Merge the pyte DataFrame with the existing merged DataFrame
+print("Merging the pyte DataFrame with the existing merged DataFrame...")
+final_df = pd.merge(merged_df, pyte_df, how='left', on='id')
+
+# Save the final merged DataFrame as a new CSV file
+print(f"Saving the final merged DataFrame to {merged_csv_path}...")
+final_df.to_csv(merged_csv_path, index=False)
+print("Final merged DataFrame saved successfully.")
+
+# Print the head of the final merged DataFrame
+print("Printing the head of the final merged DataFrame:")
+print(final_df.head())
 
 # Provide statistics on the merge operation
 total_rows_gold = len(gold_df_filtered)
 total_rows_silver = len(silver_df)
 total_rows_merged = len(merged_df)
+total_rows_final = len(final_df)
 
 print("\nMerge Operation Statistics:")
 print(f"Total rows in gold DataFrame: {total_rows_gold}")
 print(f"Total rows in silver DataFrame: {total_rows_silver}")
 print(f"Total rows in merged DataFrame: {total_rows_merged}")
+print(f"Total rows in final DataFrame: {total_rows_final}")
 print(f"Number of rows dropped due to failed merges: {rows_dropped}")
 print(f"Number of successful merges: {total_rows_merged}")
-print(f"Merged DataFrame saved as: {merged_csv_path}")
+print(f"Final DataFrame saved as: {merged_csv_path}")
