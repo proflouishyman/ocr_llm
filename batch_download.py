@@ -9,6 +9,7 @@ import os
 import json
 import time
 from openai import OpenAI
+import re
 
 # Variables
 API_KEY_FILE = "/data/lhyman6/api_key.txt"
@@ -95,42 +96,74 @@ def extract_json_lines(result_file, output_dir):
             print(f"Extracted {custom_id} to {output_file_path}")
 
 
+
 def extract_content_to_text(json_dir):
     """Extract specific fields from JSON files and save as text files next to the original image files."""
+    failed_files = []
+
     for filename in os.listdir(json_dir):
         if filename.endswith(".json"):
             json_file_path = os.path.join(json_dir, filename)
             with open(json_file_path, "r") as json_file:
-                data = json.load(json_file)
+                try:
+                    data = json.load(json_file)
+                    method_used = "JSON Parsing"
+                    success_message = "and it was successful"
+                except json.JSONDecodeError:
+                    print(f"Failed to decode JSON content for {json_file_path}. Using regex extraction instead.")
+                    method_used = "Regex Extraction"
+                    success_message = ""
+
+                    # Set data to empty dict to prevent further errors
+                    data = {}
+
                 response_body = data.get('response', {}).get('body', {})
                 choices = response_body.get('choices', [])
-                
+
                 if choices:
                     message_content = choices[0].get('message', {}).get('content', '')
-                    
+
                     # Remove the enclosing ```json and ``` markers
                     if message_content.startswith("```json") and message_content.endswith("```"):
                         message_content = message_content[7:-3].strip()
-                    
+
                     try:
                         message_json = json.loads(message_content)
                     except json.JSONDecodeError:
-                        print(f"Failed to decode JSON content for {filename}")
-                        continue
+                        print(f"Failed to decode JSON content for {json_file_path}. Using regex extraction instead.")
+                        method_used = "Regex Extraction"
+                        success_message = ""
 
-                    # Extract required fields
-                    ocr_text = message_json.get("ocr_text", "")
-                    summary = message_json.get("summary", "")
-                    date = message_json.get("date", "No Date Provided")
-                    is_printed = message_json.get("is_printed", False)  # Keep as boolean
-                    is_legible = message_json.get("is_legible", False)  # Keep as boolean
+                        # Set message_json to empty dict to prevent further errors
+                        message_json = {}
+
+                    # Regex patterns to extract fields
+                    ocr_text_pattern = r'"ocr_text": "([^"]+)"'
+                    summary_pattern = r'"summary": "([^"]+)"'
+                    date_pattern = r'"date": "([^"]+)"'
+                    is_printed_pattern = r'"is_printed": (true|false)'
+                    is_legible_pattern = r'"is_legible": (true|false)'
+
+                    # Find matches using regex
+                    ocr_text_match = re.search(ocr_text_pattern, message_content)
+                    summary_match = re.search(summary_pattern, message_content)
+                    date_match = re.search(date_pattern, message_content)
+                    is_printed_match = re.search(is_printed_pattern, message_content)
+                    is_legible_match = re.search(is_legible_pattern, message_content)
+
+                    # Extract fields from regex matches or use defaults
+                    ocr_text = ocr_text_match.group(1) if ocr_text_match else ""
+                    summary = summary_match.group(1) if summary_match else ""
+                    date = date_match.group(1) if date_match else "No Date Provided"
+                    is_printed = is_printed_match.group(1) == "true" if is_printed_match else False
+                    is_legible = is_legible_match.group(1) == "true" if is_legible_match else False
 
                     # Prepare content for output
                     content = (f"OCR Text: {ocr_text}\n"
                                f"Summary: {summary}\n"
                                f"Date: {date}\n"
-                               f"Printed: {is_printed}\n"  # Output boolean directly
-                               f"Legible: {is_legible}")  # Output boolean directly
+                               f"Printed: {is_printed}\n"
+                               f"Legible: {is_legible}")
 
                     custom_id = data.get("custom_id", "unknown_id")
                     original_path = custom_id.replace("|", os.sep)
@@ -143,7 +176,19 @@ def extract_content_to_text(json_dir):
                     os.makedirs(original_dir, exist_ok=True)
                     with open(text_file_path, "w") as text_file:
                         text_file.write(content)
-                    print(f"Extracted content of {custom_id} to {text_file_path}")
+                    
+                    print(f"Extracted content of {custom_id} to {text_file_path} using {method_used}. {success_message}")
+                else:
+                    print(f"No valid choices found for {json_file_path}.")
+                    failed_files.append(json_file_path)
+
+            if not choices:
+                failed_files.append(json_file_path)
+    
+    if failed_files:
+        print("\nFiles that failed:")
+        for file in failed_files:
+            print(file)
 
 
 def process_result_files(result_dir, extraction_base_dir, batch_id):
