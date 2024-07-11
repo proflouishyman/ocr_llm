@@ -5,7 +5,7 @@
 # This is how you run this:
 # sbatch ocr_slurm.sh
 
-#SBATCH --job-name=ocr-job
+#SBATCH --job-name=pyte-job1
 #SBATCH --output=./slurm_logging/ocr_job_%A_%a.out  # Output file, where %A is the job ID and %a is the array index
 #SBATCH --error=./slurm_logging/ocr_job_%A_%a.err   # Error file
 #SBATCH --ntasks=1                  # Each task is a single process (good practice for array jobs)
@@ -27,4 +27,4 @@ source $(conda info --base)/etc/profile.d/conda.sh
 conda activate ocrenv
 
 # Run the Python script
-srun python /data/lhyman6/OCR/scripts/ocr_images_pyte_slurm_nocheck_3 $SLURM_ARRAY_TASK_ID
+srun python /data/lhyman6/OCR/scripts/ocr_llm/ocr_pyte.py $SLURM_ARRAY_TASK_ID
