@@ -5,7 +5,7 @@ current_dir = os.getcwd()
 
 # Directory paths
 base_dir = "/scratch4/lhyman6/OCR/OCR/ocr_llm/work"
-script_path = "/data/lhyman6/OCR/scripts/train_bart.py"
+script_path = "/data/lhyman6/OCR/scripts/ocr_llm/train_bart.py"
 
 # Dataset names and sizes
 datasets = ["gold", "silver"]
