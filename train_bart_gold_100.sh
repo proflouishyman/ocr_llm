@@ -35,7 +35,7 @@ TRAIN_DATASET="/scratch4/lhyman6/OCR/OCR/ocr_llm/work/gold_100/train"
 VALIDATION_DATASET="/scratch4/lhyman6/OCR/OCR/ocr_llm/work/gold_100/val"
 TEST_DATASET="/scratch4/lhyman6/OCR/OCR/ocr_llm/work/gold_100/test"
 OUTPUT_DIR="/scratch4/lhyman6/OCR/OCR/ocr_llm/work/tuning_results_gold_100"
-SCRIPT_PATH="/data/lhyman6/OCR/scripts/train_bart.py"
+SCRIPT_PATH="/data/lhyman6/OCR/scripts/ocr_llm/train_bart.py"
 
 echo "Training dataset: $TRAIN_DATASET"
 echo "Validation dataset: $VALIDATION_DATASET"

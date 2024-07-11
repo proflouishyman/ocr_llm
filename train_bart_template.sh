@@ -33,7 +33,7 @@ TRAIN_DATASET=$1
 VALIDATION_DATASET=$2
 TEST_DATASET=$3
 OUTPUT_DIR=$4
-SCRIPT_PATH="/data/lhyman6/OCR/scripts/train_bart.py"
+SCRIPT_PATH="/data/lhyman6/OCR/scripts/ocr_llm/train_bart.py"
 
 # Running the training script using the transformers Trainer
 srun python $SCRIPT_PATH --run_locally --train_dataset $TRAIN_DATASET --validation_dataset $VALIDATION_DATASET --test_dataset $TEST_DATASET --output_dir $OUTPUT_DIR
