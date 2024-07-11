@@ -1,5 +1,4 @@
-# OCR LLM
-**Summer 2024 OCR Correction Project**
+# OCR LLM - Summer 2024 OCR Correction Project
 
 ## Original Image Files
 - Path: `/data/lhyman6/OCR/data/images/*.jpg`
@@ -25,6 +24,8 @@ The project aims to compare the training of LLMs for OCR with different levels o
 ---
 
 ## Batch Operations
+#using ocrenv
+
 - **Batch Upload:** Send all the images to Chat 4o for processing.
 - **Batch Download:** Retrieve all the data.
 - **Write CSV:** Read the OCR text into a file called `silver_ocr_data.csv`.
@@ -46,28 +47,42 @@ Train BART to correct OCR with both gold and silver data in increments of 100, 1
 - **Script:** `ocr_pyte.py` (uses Pytesseract to image all the files)
 
 ### Preprocess the OCR Text
-- **Script:** `read_data.py` (combines the OCR and original data, cleans up)
+- **Script:** `writecsv.py` (extracts data, cleans, reformats for LLM training)
+- **Script:** `read_data.py` (combines OCR and original data, cleans up)
 
 ### Tokenize the Text
-- **Script:** `tokenize_data.py` (turns the text into labelled tokens for training)
+- **Script:** `tokenize_data.py` (labels tokens for training)
 
 ### Training
 - **Script:** `train_bart.py` (basic training script, runs on two GPUs)
 - **Template:** `train_bart_template.sh` (basic template for the Slurm script)
-- **Script:** `generate_training_scripts` (generates the training scripts for different models)
-- **Script:** `submit_bart_training` (submits all the models)
+- **Script:** `generate_training_scripts` (creates training scripts for different models)
+- **Script:** `submit_bart_training` (submits all models for training)
 
 ### Plot Training Results
-- **Script:** `plot_bart_training` (plots the results of the training) *#untested*
+- **Script:** `plot_bart_training` (plots training results) *#untested*
 
 ## Testing
 - **Script:** `bart_test.py` (generates results)
 - **Script:** `bart_test_validate.py` (uses validation tools)
 
 ### Process The OCR
-- **Script:** `run_bart_slurm.sh` (can be modified for many more GPUs but processes the OCR text)
-- **Script:** `run_bart_slurm.sh` (currently set to `/scratch4/lhyman6/OCR/work/tuning_results_robust/checkpoint-26440`)
-- **Script:** `/data/lhyman6/OCR/scripts/bart_over_data_modeltest_debug_1.py` (current model, check for model list)
+- **Script:** `run_bart_slurm.sh` (modifiable for more GPUs, processes OCR text)
+- **Script:** `/data/lhyman6/OCR/scripts/bart_over_data_modeltest_debug_1.py` (tests current model, checks model list)
 
-## Testing Models
-- **Script:** `/data/lhyman6/OCR/scripts/bart_over_data_modeltest_debug_1.py` (runs a test batch for every model to compare results)
+---
+
+## LLAVA Training
+#using llavaenv
+# need to build flash-attn and everything while on cuda gpu
+
+### Data Preparation
+- **Script:** `llava_data_read.py` (links images and texts into JSON format for LLAVA training, uses `complete_bart_training_data.csv` from BART training)
+output folder: /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/
+
+### Model Training
+- **Script:** `train_mem.py` (from [LLaVA GitHub](https://github.com/haotian-liu/LLaVA/blob/main/llava/train/train_mem.py))
+
+finetune instructions: https://github.com/haotian-liu/LLaVA/blob/main/docs/Finetune_Custom_Data.md
+
+make sure you have 1) cuda 2) path deepspeed 3) ./fine_tune_lora.sh
