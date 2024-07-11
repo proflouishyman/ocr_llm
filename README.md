@@ -1,84 +1,73 @@
-# ocr_llm
-Summer 2024 ocr correction project
+# OCR LLM
+**Summer 2024 OCR Correction Project**
 
+## Original Image Files
+- Path: `/data/lhyman6/OCR/data/images/*.jpg`
 
+## Pytesseract Image Files
+- Path: `/data/lhyman6/OCR/data/images/*.txt.pyte`
 
-Read me for OCR LLM
-
-
-Original Image Files:
-/data/lhyman6/OCR/data/images   .jpg
-
-Pytesseract Image Files:
-/data/lhyman6/OCR/data/images   .txt.pyte
-
-Chat-GPT Vision Files:
-/data/lhyman6/OCR/data/images   .txt
-
-
-
-
----
-Experiment Design
-Compare the training of LLMs for OCR with different levels of gold and silver quality data.
-
-BART (100, 1000, 10000)
-LLAVA (100, 1000, 10000)
-
-The nomenclature is:
-Bart, 100, Gold = bart_100_gold
-
+## Chat-GPT Vision Files
+- Path: `/data/lhyman6/OCR/data/images/*.txt`
 
 ---
 
-batch upload: send all the images to chat 4o for processing
-batch download: retrieve all the data
-writecsv: read the ocr text into a file called silver_ocr_data.csv
+## Experiment Design
+The project aims to compare the training of LLMs for OCR with different levels of gold and silver quality data.
 
-Bart Training:
-Train BART to correct OCR with both gold and silver data in increments of 100, 1000, and 10000
-gold data: /data/lhyman6/OCR/data/gompers_corrections/bythepeople1.csv
-silver data: /data/lhyman6/OCR/scripts/ocr_llm/silver_ocr_data.csv
+### Models and Data Sizes
+- **BART** (100, 1000, 10000)
+- **LLAVA** (100, 1000, 10000)
 
+### Nomenclature
+- Example: `Bart, 100, Gold` = `bart_100_gold`
 
+---
 
-----
-BART TRAINING 
+## Batch Operations
+- **Batch Upload:** Send all the images to Chat 4o for processing.
+- **Batch Download:** Retrieve all the data.
+- **Write CSV:** Read the OCR text into a file called `silver_ocr_data.csv`.
 
-Download Images
+## Bart Training
+Train BART to correct OCR with both gold and silver data in increments of 100, 1000, and 10000.
+- **Gold Data:** `/data/lhyman6/OCR/data/gompers_corrections/bythepeople1.csv`
+- **Silver Data:** `/data/lhyman6/OCR/scripts/ocr_llm/silver_ocr_data.csv`
 
-/data/lhyman6/OCR/scripts/download_images.py
+---
 
-OCR Images with Slurm
-ocr_slurm.sh
-ocr_pyte.py                 uses pyteseract to image all the files
+## BART Training Workflow
 
-Preprocess the OCR Text
-read_data.py                combines the ocr and original data, cleans up
+### Download Images
+- Script: `/data/lhyman6/OCR/scripts/download_images.py`
 
-Tokenize the Text
-tokenize_data.py            turns the text into labelled tokens for training 
+### OCR Images with Slurm
+- **Script:** `ocr_slurm.sh`
+- **Script:** `ocr_pyte.py` (uses Pytesseract to image all the files)
 
-Training
-train_bart.py               the basic training script. Runs on two GPUS
-train_bart_template.sh      the basic template for the slurm script
-generate_training_scripts   generates the training scripts for the different models
-submit_bart_training        submits all the models
+### Preprocess the OCR Text
+- **Script:** `read_data.py` (combines the OCR and original data, cleans up)
 
+### Tokenize the Text
+- **Script:** `tokenize_data.py` (turns the text into labelled tokens for training)
 
+### Training
+- **Script:** `train_bart.py` (basic training script, runs on two GPUs)
+- **Template:** `train_bart_template.sh` (basic template for the Slurm script)
+- **Script:** `generate_training_scripts` (generates the training scripts for different models)
+- **Script:** `submit_bart_training` (submits all the models)
 
-plot_bart_training         plots the results of the training #untested
+### Plot Training Results
+- **Script:** `plot_bart_training` (plots the results of the training) *#untested*
 
-Testing
-bart_test.py                #generates results
-bart_test_validate.py       #uses validation tools
+## Testing
+- **Script:** `bart_test.py` (generates results)
+- **Script:** `bart_test_validate.py` (uses validation tools)
 
-Process The OCR
-run_bart_slurm.sh       #can be modified for many more GPUS but processes the OCR text
+### Process The OCR
+- **Script:** `run_bart_slurm.sh` (can be modified for many more GPUs but processes the OCR text)
+- **Script:** `run_bart_slurm.sh` (currently set to `/scratch4/lhyman6/OCR/work/tuning_results_robust/checkpoint-26440`)
+- **Script:** `/data/lhyman6/OCR/scripts/bart_over_data_modeltest_debug_1.py` (current model, check for model list)
 
-Process The OCR
-run_bart_slurm.sh     #currently set to /scratch4/lhyman6/OCR/work/tuning_results_robust/checkpoint-26440
-/data/lhyman6/OCR/scripts/bart_over_data_modeltest_debug_1.py #current model. check for model list
-
----TESTING MODELS
-/data/lhyman6/OCR/scripts/bart_over_data_modeltest_debug_1.py #runs a test batch for every model to compare results
+## Testing Models
+- **Script:** `/data/lhyman6/OCR/scripts/bart_over_data_modeltest_debug_1.py` (runs a test batch for every model to compare results)
