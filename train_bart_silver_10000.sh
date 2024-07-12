@@ -6,7 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem-per-cpu=64G
-#SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:4
 #SBATCH --qos=qos_gpu
 #SBATCH --account lhyman6_gpu
 #SBATCH --mail-type=BEGIN,END,FAIL
@@ -24,6 +24,12 @@ module load gcc
 
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate ocrenv
+
+# Set CUTLASS environment variable
+export CUTLASS_PATH=/data/lhyman6/OCR/scripts/ocr_llm/cutlass/cutlass
+
+# Ensure DeepSpeed is on the PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # Set environment variables for PyTorch distributed training
 export MASTER_ADDR=$(hostname)

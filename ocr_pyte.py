@@ -60,6 +60,6 @@ def main(task_id, directory, export_directory):
 
 if __name__ == '__main__':
     task_id = int(os.getenv('SLURM_ARRAY_TASK_ID', '0'))  # Default to 0 if not run by Slurm
-    directory = '/data/lhyman6/data/images'
-    export_directory = '/data/lhyman6/data/images'
+    directory = '/data/lhyman6/OCR/scripts/data/second_images'  #modified for second processing
+    export_directory = '/data/lhyman6/OCR/scripts/data/second_images'
     main(task_id, directory, export_directory)

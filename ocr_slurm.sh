@@ -6,8 +6,8 @@
 # sbatch ocr_slurm.sh
 
 #SBATCH --job-name=pyte-job1
-#SBATCH --output=./slurm_logging/ocr_job_%A_%a.out  # Output file, where %A is the job ID and %a is the array index
-#SBATCH --error=./slurm_logging/ocr_job_%A_%a.err   # Error file
+#SBATCH --output=./slurm_logging/ocr_job/ocr_job_%A_%a.out  # Output file, where %A is the job ID and %a is the array index
+#SBATCH --error=./slurm_logging//ocr_job/ocr_job_%A_%a.err   # Error file
 #SBATCH --ntasks=1                  # Each task is a single process (good practice for array jobs)
 #SBATCH --nodes=1                     # Each job array task runs on one node
 #SBATCH --ntasks-per-node=1           # One task per node

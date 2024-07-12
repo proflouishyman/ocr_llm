@@ -1,12 +1,12 @@
 #!/bin/bash -l
 
-#SBATCH --job-name=LLaVA_train_gold_10000
+#SBATCH --job-name=g_10k_l
 #SBATCH --time=24:00:00
 #SBATCH --partition=ica100
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --mem-per-cpu=128G
-#SBATCH --gres=gpu:1
+
+#SBATCH --gres=gpu:2
 #SBATCH --qos=qos_gpu
 #SBATCH --account lhyman6_gpu
 #SBATCH --mail-type=BEGIN,END,FAIL
