@@ -86,3 +86,11 @@ output folder: /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/
 finetune instructions: https://github.com/haotian-liu/LLaVA/blob/main/docs/Finetune_Custom_Data.md
 
 make sure you have 1) cuda 2) path deepspeed 3) ./fine_tune_lora.sh
+#check your paths
+#i altered the training code to push to gpu
+#needs cutlass, needs torch 1.9.1
+torch 2.1.2
+
+HOWTO
+fine_tune_lora.sh is the basic template which runs train.py and zero3.json (the config file)
+generate_llava_scripts.py creates the versions of that for each type of training

@@ -8,7 +8,7 @@ deepspeed train_mem.py \
     --deepspeed /data/lhyman6/OCR/scripts/ocr_llm/zero3.json \
     --model_name_or_path liuhaotian/llava-v1.5-13b \
     --version v1 \
-    --data_path /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/gold_100/gold_100.json \
+    --data_path /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/gold_1000/gold_1000.json \
     --image_folder ./data/lhyman6/OCR/data/images/ \
     --vision_tower ./clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
@@ -19,7 +19,7 @@ deepspeed train_mem.py \
     --group_by_modality_length True \
     --fp16 False \
     --bf16 True \
-    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/gold_100/checkpoints/llava-v1.5-13b-task-lora \
+    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/gold_1000/checkpoints/llava-v1.5-13b-task-lora \
     --num_train_epochs 15 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 4 \
