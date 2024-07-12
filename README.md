@@ -94,3 +94,6 @@ torch 2.1.2
 HOWTO
 fine_tune_lora.sh is the basic template which runs train.py and zero3.json (the config file)
 generate_llava_scripts.py creates the versions of that for each type of training
+
+
+need to find the train.py that is deep in the files and make sure that it is pushed to github.
