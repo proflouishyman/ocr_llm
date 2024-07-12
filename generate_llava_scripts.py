@@ -47,13 +47,13 @@ deepspeed train_mem.py \\
 # Base template for the submission Slurm script
 slurm_template = """#!/bin/bash -l
 
-#SBATCH --job-name=LLaVA_train_{data_type}_{size}
+#SBATCH --job-name={job_name}
 #SBATCH --time=24:00:00
 #SBATCH --partition=ica100
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --mem-per-cpu=128G
-#SBATCH --gres=gpu:1
+
+#SBATCH --gres=gpu:2
 #SBATCH --qos=qos_gpu
 #SBATCH --account lhyman6_gpu
 #SBATCH --mail-type=BEGIN,END,FAIL
@@ -98,6 +98,12 @@ srun bash train_llava_{data_type}_{size}.sh
 types = ["gold", "silver"]
 sizes = [100, 1000, 10000]
 
+# Function to generate the job name
+def generate_job_name(data_type, size):
+    size_map = {100: "100", 1000: "1k", 10000: "10k"}
+    prefix = "g" if data_type == "gold" else "s"
+    return f"{prefix}_{size_map[size]}_l"
+
 # Create the scripts
 for data_type in types:
     for size in sizes:
@@ -112,8 +118,11 @@ for data_type in types:
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
+        # Generate job name
+        job_name = generate_job_name(data_type, size)
+        
         # Create submission Slurm script
-        slurm_script_content = slurm_template.format(data_type=data_type, size=size)
+        slurm_script_content = slurm_template.format(data_type=data_type, size=size, job_name=job_name)
         slurm_script_name = f"submit_llava_{data_type}_{size}.sh"
         with open(slurm_script_name, "w") as slurm_file:
             slurm_file.write(slurm_script_content)
