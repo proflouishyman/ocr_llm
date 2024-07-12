@@ -16,7 +16,7 @@ The project aims to compare the training of LLMs for OCR with different levels o
 
 ### Models and Data Sizes
 - **BART** (100, 1000, 10000)
-- **LLAVA** (100, 1000, 10000)
+- **LLAVA** (untuned, 100, 1000, 10000)
 
 ### Nomenclature
 - Example: `Bart, 100, Gold` = `bart_100_gold`
@@ -104,10 +104,10 @@ Make sure you have:
 ## ANALYSIS
 Now that we have models, we need to test the results. We need to construct a CSV file that looks like this:
 
-| id | transcription | pyte_ocr | BART_untuned | BART_gold_100 | BART_gold_1000 | BART_gold_10000 | BART_silver_100 | BART_silver_1000 | BART_silver_10000 | LLAVA_untuned_gold_100 | LLAVA_untuned_gold_1000 | LLAVA_untuned_gold_10000 | LLAVA_gold_100 | LLAVA_gold_1000 | LLAVA_gold_10000 | LLAVA_silver_100 | LLAVA_silver_1000 | LLAVA_silver_10000 |
-|----|---------------|----------|--------------|---------------|----------------|-----------------|-----------------|------------------|-------------------|-----------------------|------------------------|-------------------------|----------------|-----------------|------------------|------------------|-------------------|--------------------|
-|    |               |          |              |               |                |                 |                 |                  |                   |                       |                        |                         |                |                 |                  |                  |                   |                    |
-|    |               |          |              |               |                |                 |                 |                  |                   |                       |                        |                         |                |                 |                  |                  |                   |                    |
+| id | transcription | pyte_ocr | BART_untuned | BART_gold_100 | BART_gold_1000 | BART_gold_10000 | BART_silver_100 | BART_silver_1000 | BART_silver_10000 | LLAVA_untuned | LLAVA_gold_100 | LLAVA_gold_1000 | LLAVA_gold_10000 | LLAVA_silver_100 | LLAVA_silver_1000 | LLAVA_silver_10000 |
+|----|---------------|----------|--------------|---------------|----------------|-----------------|-----------------|------------------|-------------------|---------------|----------------|-----------------|------------------|------------------|-------------------|--------------------|
+|    |               |          |              |               |                |                 |                 |                  |                   |               |                |                 |                  |                  |                   |                    |
+|    |               |          |              |               |                |                 |                 |                  |                   |               |                |                 |                  |                  |                   |                    |
 
 - **Script:** `download_images.py` (this needs to be modified for the second CSV file)
 - **Scripts:** `ocr_pyte` and `ocr_slurm.sh` (processes images into Pytesseract)
