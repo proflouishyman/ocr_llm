@@ -112,4 +112,8 @@ Now that we have models, we need to test the results. We need to construct a CSV
 - **Script:**   `download_images.py`                (this needs to be modified for the second CSV file)
 - **Scripts:**  `ocr_pyte.py` and `ocr_slurm.sh`    (processes images into Pytesseract)
 
-- **Scripts:**  `generate_complete_testing.csv`     this script reads in the LOC CSV and then reads in additional data (pyte OCR and openai OCR) from the data directory
+- **Scripts:**  `generate_complete_testing.py`     this script reads in the LOC CSV and then reads in additional data (pyte OCR and openai OCR) from the data directory
+creates complete_testing_csv.csv
+
+- **Scripts:**  'run_bart_models.py"    runs the trained models over the data
+creates processed_testing_csv.csv
