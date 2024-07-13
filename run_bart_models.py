@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 # Variables
 csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/complete_testing_csv.csv'
-output_csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/processed_testing_csv.csv'  # New output CSV path
+output_csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/processed_1000_testing_csv.csv'  # New output CSV path
 model_base_path = '/scratch4/lhyman6/OCR/OCR/ocr_llm/work'
 model_dirs = [
     'tuning_results_gold_100',
@@ -26,8 +26,8 @@ model_output_columns = {
 }
 
 base_prompt = "Correct this OCR:"
-save_interval = 50  # Save after processing every 50 rows
-process_row_limit = 5  # Number of rows to process
+save_interval = 100  # Save after processing every 50 rows
+process_row_limit = 2000  # Number of rows to process
 
 # Helper functions
 def get_latest_checkpoint(model_dir):
