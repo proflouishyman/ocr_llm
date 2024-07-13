@@ -17,7 +17,7 @@ BATCH_DIR = "batch"
 COMPLETED_DIR = os.path.join(BATCH_DIR, "completed")
 OUTPUT_DIR = "batch_return"
 EXTRACTION_BASE_DIR = "batch_json_results"  # Base output directory for individual JSON files
-RETRY_LIMIT = 5
+RETRY_LIMIT = 60
 RETRY_DELAY = 60  # in seconds
 
 def read_api_key(api_key_file):
