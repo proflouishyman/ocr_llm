@@ -6,9 +6,12 @@ from tqdm import tqdm
 from PIL import Image
 #completely untested.
 
+
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 # Variables
 csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/complete_testing_csv.csv'
-output_csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/processed_1000_testing_csv.csv'
+output_csv_path = '/data/lhyman6/OCR/scripts/ocr_llm/processed_llava_testing_csv.csv'
 model_base_path = '/scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava'
 image_data_directory = '/data/lhyman6/OCR/scripts/data/second_images'  # Assuming image data may be used
 untuned_model_id = "llava-hf/llava-1.5-7b-hf"
@@ -34,7 +37,7 @@ model_output_columns = {
 
 base_prompt = "Correct this OCR:"
 save_interval = 100
-process_row_limit = 2000
+process_row_limit = 5
 
 # Helper functions
 def get_latest_checkpoint(model_dir):
@@ -58,7 +61,7 @@ def load_and_generate(model, processor, device, text, image=None):
     with torch.no_grad():
         outputs = model.generate(
             **inputs, 
-            max_length=1000,
+            max_length=200,
             min_length=50,
             num_beams=5, 
             length_penalty=2.0,

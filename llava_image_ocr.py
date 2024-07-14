@@ -4,17 +4,20 @@ from PIL import Image
 import os
 from tqdm import tqdm  # For progress indicators
 
-# Date: 2024-05-14
-# Purpose: Extract text from every JPG in a directory and save the text files in a different directory, with progress indicators and checks for already processed files.
+# Date: 2024-07-14
+# Purpose: Extract text from every JPG in a directory and save the text files in a different directory, with progress indicators and checks for already processed files, and an option to process only a specified number of images.
+
+# Model path
+model_path = "llava-hf/llava-v1.6-mistral-7b-hf"
 
 # Initialize processor and model
-processor = LlavaNextProcessor.from_pretrained("llava-hf/llava-v1.6-mistral-7b-hf")
-model = LlavaNextForConditionalGeneration.from_pretrained("llava-hf/llava-v1.6-mistral-7b-hf", torch_dtype=torch.float16, low_cpu_mem_usage=True)
+processor = LlavaNextProcessor.from_pretrained(model_path)
+model = LlavaNextForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.float16, low_cpu_mem_usage=True)
 model.to("cuda:0")
 
 # Directories
-input_directory = "/data/lhyman6/OCR/data/images_binary"  # Update with the path to your input directory
-output_directory = "/data/lhyman6/OCR/work/llava_text_sample"  # Update with the path to your output directory
+input_directory = "/data/lhyman6/OCR/scripts/data/second_images"  # Update with the path to your input directory
+output_directory = "/data/lhyman6/OCR/scripts/ocr_llm/test"  # Update with the path to your output directory
 
 # Ensure the output directory exists
 os.makedirs(output_directory, exist_ok=True)
@@ -22,8 +25,16 @@ os.makedirs(output_directory, exist_ok=True)
 # Get a list of all JPG files in the input directory
 jpg_files = [f for f in os.listdir(input_directory) if f.lower().endswith(".jpg")]
 
+# Specify the maximum number of images to process (set to None to process all images)
+max_images = 10  # Change this value as needed
+
 # Iterate over all JPG files with progress indicators
+processed_count = 0
 for filename in tqdm(jpg_files, desc="Processing images"):
+    if max_images is not None and processed_count >= max_images:
+        tqdm.write("Reached the maximum number of images to process.")
+        break
+    
     input_path = os.path.join(input_directory, filename)
     
     # Determine the corresponding output file path
@@ -45,7 +56,6 @@ for filename in tqdm(jpg_files, desc="Processing images"):
     # Generate output
     output = model.generate(**inputs, max_new_tokens=1024)
     
-    
     # Decode and save the text
     text = processor.decode(output[0], skip_special_tokens=True)
     
@@ -53,3 +63,4 @@ for filename in tqdm(jpg_files, desc="Processing images"):
         f.write(text)
     
     tqdm.write(f"Processed {filename} and saved text to {output_filename}")
+    processed_count += 1
