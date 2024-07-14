@@ -13,7 +13,10 @@ model_path = "llava-hf/llava-v1.6-mistral-7b-hf"
 # Initialize processor and model
 processor = LlavaNextProcessor.from_pretrained(model_path)
 model = LlavaNextForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.float16, low_cpu_mem_usage=True)
-model.to("cuda:0")
+
+# Ensure the model is fully loaded before moving it to the GPU
+model.eval()  # Set the model to evaluation mode
+model = model.to("cuda:0")
 
 # Directories
 input_directory = "/data/lhyman6/OCR/scripts/data/second_images"  # Update with the path to your input directory

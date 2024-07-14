@@ -117,3 +117,9 @@ creates complete_testing_csv.csv
 
 - **Scripts:**  'run_bart_models.py"    runs the trained models over the data
 creates processed_testing_csv.csv
+
+bart models completed.
+trying to get llava 1.5 to run but failed with pipeline and direct code. need a break. 
+when you start again, try to get llava to run.
+
+
