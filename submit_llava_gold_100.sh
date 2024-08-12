@@ -11,8 +11,8 @@
 #SBATCH --account lhyman6_gpu
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=lhyman6@jhu.edu
-#SBATCH --output=./slurm_logging/llava_training_gold_100_%j.out
-#SBATCH --error=./slurm_logging/llava_training_gold_100_%j.err
+#SBATCH --output=./slurm_logging/llava_16_training_gold_100_%j.out
+#SBATCH --error=./slurm_logging/llava_16_training_gold_100_%j.err
 
 echo "Job started on $(date)"
 echo "Running on node $(hostname)"

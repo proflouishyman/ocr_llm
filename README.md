@@ -9,6 +9,20 @@
 ## Chat-GPT Vision Files
 - **Path:**      `/data/lhyman6/OCR/data/images/*.txt`
 
+
+---
+##BORR
+
+### Rolls
+Roll images are in /data/lhyman6/OCR/data/borr/BORR
+
+ChatGPT reference: https://chatgpt.com/c/7d3e61b4-1ac4-4ac6-ab31-25039e73640c
+
+To download use:
+
+
+To expand use:
+/data/lhyman6/OCR/scripts/borr/expand_rolls_pdf.py
 ---
 
 ## Experiment Design
@@ -99,6 +113,40 @@ Make sure you have:
 - **Script:**      `submit_llava_METAL_NUMBER.sh`       (submit these with `sbatch` to run training)
 
 ---
+
+
+## LLAVA Training 1.6
+
+Rerunning with LLAVA 1.6. Using llava-hf/llava-v1.6-mistral-7b-hf
+
+Using `llavaenv`, need to build flash-attn and everything while on cuda gpu.
+
+The deepspeed config file `zero3.json`  remained unchanged.
+
+### Data Preparation
+- **Script:**      `llava_data_read.py`                (links images and texts into JSON format for LLAVA training, uses `complete_bart_training_data.csv` from BART training)
+- **Output Folder:** `/scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/`
+
+### Model Training
+- **Script:**      `train_mem_16.py`                      (from [LLaVA GitHub](https://github.com/haotian-liu/LLaVA/blob/main/llava/train/train_mem.py))
+
+**Finetune Instructions:** [LLaVA Finetune Documentation](https://github.com/haotian-liu/LLaVA/blob/main/docs/Finetune_Custom_Data.md)
+
+Make sure you have:
+1. `cuda/12.1.0`
+2. Paths to `deepspeed` and path to `cutlass`
+
+`train.py` is backed up locally by `move_train.py` but the version you need to edit in order to make changes is actually `"/home/lhyman6/.local/lib/python3.8/site-packages/llava/train/train.py"`
+
+Needed to alter '/home/lhyman6/.local/lib/python3.8/site-packages/deepspeed/constants.py'  to use the MASTER_PORT for the distributed port address instead of an arbitrary number
+
+### HOWTO
+- **Script:**      `generate_llava_scripts_16.py`          (creates the versions of that for each type of training)
+- **Script:**      `submit_llava_METAL_NUMBER.sh`       (submit these with `sbatch` to run training)
+
+---
+
+
 
 ## ANALYSIS
 

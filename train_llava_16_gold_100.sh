@@ -30,22 +30,13 @@ source /data/apps/linux-centos8-cascadelake/gcc-9.3.0/anaconda3-2020.07-i7qavhio
 conda activate llavaenv
 cd /data/lhyman6/OCR/scripts/ocr_llm
 
-
-deepspeed.init_distributed(
-    dist_backend='nccl',
-    distributed_port=$MASTER_PORT
-)
-
 export WANDB_MODE=offline
 export WANDB_SILENT=true
-
-# Debugging: Print the current environment variables
-env | grep -E 'MASTER_PORT|CUTLASS_PATH|WANDB_MODE|WANDB_SILENT'
 
 deepspeed train_mem.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --deepspeed /data/lhyman6/OCR/scripts/ocr_llm/zero3.json \
-    --model_name_or_path liuhaotian/llava-v1.6-34b \
+    --model_name_or_path llava-hf/llava-v1.6-mistral-7b-hf \
     --version v1 \
     --data_path /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/gold_100/gold_100.json \
     --image_folder ./data/lhyman6/OCR/data/images/ \
@@ -58,7 +49,7 @@ deepspeed train_mem.py \
     --group_by_modality_length True \
     --fp16 False \
     --bf16 True \
-    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/gold_100/checkpoints/liuhaotian/llava-v1.6-34b-task-lora \
+    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/gold_100/checkpoints/llava-hf/llava-v1.6-mistral-7b-hf-task-lora \
     --num_train_epochs 15 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 4 \
@@ -71,11 +62,10 @@ deepspeed train_mem.py \
     --weight_decay 0. \
     --warmup_ratio 0.03 \
     --lr_scheduler_type "cosine" \
-    --logging_steps 1 \
+    --logging_steps 5 \
     --tf32 False \
     --model_max_length 2048 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \
     --lazy_preprocess True \
-    
-        #--report_to wandb
+    #--report_to wandb

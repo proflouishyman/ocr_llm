@@ -6,9 +6,9 @@ export WANDB_SILENT=true
 deepspeed train_mem.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --deepspeed /data/lhyman6/OCR/scripts/ocr_llm/zero3.json \
-    --model_name_or_path liuhaotian/liuhaotian/llava-v1.6-34b \
+    --model_name_or_path liuhaotian/llava-v1.6-34b \
     --version v1 \
-    --data_path /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/gold_1000/gold_1000.json \
+    --data_path /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava/gold_100/gold_100.json \
     --image_folder ./data/lhyman6/OCR/data/images/ \
     --vision_tower ./clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
@@ -19,7 +19,7 @@ deepspeed train_mem.py \
     --group_by_modality_length True \
     --fp16 False \
     --bf16 True \
-    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/gold_1000/checkpoints/liuhaotian/llava-v1.6-34b-task-lora \
+    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16 \
     --num_train_epochs 15 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 4 \
