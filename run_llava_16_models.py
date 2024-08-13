@@ -1,10 +1,13 @@
 import os
+import shutil
 import pandas as pd
 import torch
 from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration
+from peft import PeftModel, PeftConfig
 from torch.cuda.amp import autocast, GradScaler
 from tqdm import tqdm
 from PIL import Image
+
 #uses llavaenv
 #8 13 2024
 
@@ -47,9 +50,35 @@ save_interval = 100  # Save progress every 100 rows
 process_row_limit = 5  # Limit the number of rows to process (for testing)
 
 # Helper function to get the latest checkpoint in a directory
+
 def get_latest_checkpoint(model_dir):
     checkpoints = [os.path.join(model_dir, d) for d in os.listdir(model_dir) if d.startswith('checkpoint-')]
     return max(checkpoints, key=os.path.getmtime) if checkpoints else None
+
+def load_lora_model(base_model_id, adapter_model_path):
+    # Load the base model
+    base_model = LlavaNextForConditionalGeneration.from_pretrained(
+        base_model_id,
+        torch_dtype=torch.float16,
+        low_cpu_mem_usage=False
+    )
+    
+    # Load the LoRA configuration
+    peft_config = PeftConfig.from_pretrained(adapter_model_path)
+    
+    # Load the LoRA model
+    model = PeftModel.from_pretrained(base_model, adapter_model_path)
+    
+    return model
+
+# New function to copy config.json to checkpoint directory
+def copy_config_to_checkpoint(model_dir, checkpoint_dir):
+    config_path = os.path.join(model_dir, 'config.json')
+    if os.path.exists(config_path):
+        shutil.copy(config_path, checkpoint_dir)
+        print(f"Copied config.json to {checkpoint_dir}")
+    else:
+        print(f"Warning: config.json not found in {model_dir}")
 
 # Helper function to load an image file
 def load_image(image_filename):
@@ -117,13 +146,18 @@ def main():
             model_dir = os.path.join(model_base_path, model_name, 'checkpoints', 'llava-hf', 'llava-v1.6-mistral-7b-hf-task-lora')
             latest_checkpoint = get_latest_checkpoint(model_dir)
             if latest_checkpoint:
-                model = LlavaNextForConditionalGeneration.from_pretrained(latest_checkpoint, torch_dtype=torch.float16, low_cpu_mem_usage=False)
+                try:
+                    model = load_lora_model(untuned_model_id, latest_checkpoint)
+                    model.to(device)
+                except Exception as e:
+                    print(f"Error loading model for {model_name}: {str(e)}")
+                    pbar.update(len(df))
+                    continue
             else:
                 print(f"No checkpoint found for {model_name}, skipping...")
-                pbar.update(len(df))  # Update overall progress bar
+                pbar.update(len(df))
                 continue
 
-            model.to(device)
             column_name = model_output_columns[model_name]
             
             # Inner progress bar for tracking progress within each model
