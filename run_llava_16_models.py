@@ -180,7 +180,7 @@ def main():
             
             identical_count = 0
             model_blank_count = 0
-            max_identical_threshold = 5  # Stop after 5 identical results
+            max_identical_threshold = 1  # Stop after 5 identical results
             
             # Inner progress bar for tracking progress within each model
             for index, row in tqdm(df.iterrows(), total=df.shape[0], desc=f"Processing {model_name}", leave=False):
