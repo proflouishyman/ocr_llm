@@ -37,7 +37,6 @@ export WANDB_MODE=offline
 export WANDB_SILENT=true
 
 deepspeed train_mem.py \\
-    --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \\
     --deepspeed /data/lhyman6/OCR/scripts/ocr_llm/zero3.json \\
     --model_name_or_path llava-hf/llava-v1.6-mistral-7b-hf \\
     --version v1 \\
@@ -52,7 +51,7 @@ deepspeed train_mem.py \\
     --group_by_modality_length True \\
     --fp16 False \\
     --bf16 True \\
-    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/{data_type}_{size}/checkpoints/llava-hf/llava-v1.6-mistral-7b-hf-task-lora \\
+    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/{data_type}_{size}/checkpoints/llava-hf/llava-v1.6-mistral-7b-hf-task \\
     --num_train_epochs 15 \\
     --per_device_train_batch_size 16 \\
     --per_device_eval_batch_size 4 \\
@@ -73,8 +72,6 @@ deepspeed train_mem.py \\
     --lazy_preprocess True \\
     #--report_to wandb
 """
-
-
 
 # Base template for the submission Slurm script
 slurm_template = """#!/bin/bash -l
@@ -128,8 +125,6 @@ cd /data/lhyman6/OCR/scripts/ocr_llm
 srun bash train_llava_16_{data_type}_{size}.sh
 """
 
-
-
 # Types and sizes
 types = ["gold", "silver"]
 sizes = [100, 1000, 10000]
@@ -139,9 +134,6 @@ def generate_job_name(data_type, size):
     size_map = {100: "100", 1000: "1k", 10000: "10k"}
     prefix = "g" if data_type == "gold" else "s"
     return f"{prefix}_{size_map[size]}_l16_1"
-
-# Create the scripts
-# Create the scripts
 
 # Create the scripts
 for data_type in types:

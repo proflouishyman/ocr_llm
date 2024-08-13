@@ -34,7 +34,6 @@ export WANDB_MODE=offline
 export WANDB_SILENT=true
 
 deepspeed train_mem.py \
-    --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --deepspeed /data/lhyman6/OCR/scripts/ocr_llm/zero3.json \
     --model_name_or_path llava-hf/llava-v1.6-mistral-7b-hf \
     --version v1 \
@@ -49,7 +48,7 @@ deepspeed train_mem.py \
     --group_by_modality_length True \
     --fp16 False \
     --bf16 True \
-    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/silver_10000/checkpoints/llava-hf/llava-v1.6-mistral-7b-hf-task-lora \
+    --output_dir /scratch4/lhyman6/OCR/OCR/ocr_llm/work/llava_16/silver_10000/checkpoints/llava-hf/llava-v1.6-mistral-7b-hf-task \
     --num_train_epochs 15 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 4 \
@@ -67,5 +66,4 @@ deepspeed train_mem.py \
     --model_max_length 2048 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \
-    --lazy_preprocess True \
-    #--report_to wandb
+    --lazy_preprocess True
