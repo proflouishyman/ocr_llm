@@ -47,7 +47,7 @@ untrained_column = 'LLAVA_untuned'
 # Base prompt template for OCR correction
 base_prompt = "[INST] <image>\nCorrect this OCR: {ocr_text}[/INST]"
 save_interval = 100  # Save progress every 100 rows
-process_row_limit = 5  # Limit the number of rows to process (for testing)
+process_row_limit = 2  # Limit the number of rows to process (for testing)
 
 # Helper function to get the latest checkpoint in a directory
 
@@ -63,11 +63,11 @@ def load_lora_model(base_model_id, adapter_model_path):
         low_cpu_mem_usage=False
     )
     
-    # Load the LoRA configuration
-    peft_config = PeftConfig.from_pretrained(adapter_model_path)
-    
     # Load the LoRA model
     model = PeftModel.from_pretrained(base_model, adapter_model_path)
+    
+    # Merge the LoRA weights with the base model
+    model = model.merge_and_unload()
     
     return model
 
@@ -97,6 +97,9 @@ def load_and_generate(model, processor, device, text, image):
     is_blank = not generated_text.strip()
     return generated_text if not is_blank else "ERROR: Blank response generated", is_blank
 
+
+
+
 # Main function
 def main():
     print("Starting processing...")
@@ -114,14 +117,24 @@ def main():
             df[column] = pd.NA
         df[column] = df[column].astype('object')
 
-    blank_count = 0
+    total_blank_count = 0
     scaler = GradScaler()
+
+    # Load the base model once
+    print(f"\nLoading base model: {untuned_model_id}")
+    base_model = LlavaNextForConditionalGeneration.from_pretrained(
+        untuned_model_id,
+        torch_dtype=torch.float16,
+        low_cpu_mem_usage=False
+    ).to(device)
+    print("Base model loaded successfully.")
 
     # Outer progress bar for tracking overall progress across all models
     with tqdm(total=(len(model_dirs) + 1) * len(df), desc="Overall Progress") as pbar:
         # Process untrained model first
-        print("Processing untrained model...")
-        untrained_model = LlavaNextForConditionalGeneration.from_pretrained(untuned_model_id, torch_dtype=torch.float16, low_cpu_mem_usage=False).to(device)
+        print("\nProcessing with untrained model...")
+
+        untrained_blank_count = 0
         for index, row in tqdm(df.iterrows(), total=df.shape[0], desc="Processing untrained model", leave=False):
             if pd.isna(row[untrained_column]):
                 image = load_image(f"{row['id']}.jpg")
@@ -130,27 +143,32 @@ def main():
                     pbar.update(1)
                     continue
                 text_prompt = base_prompt.format(ocr_text=row['pyte_ocr'])
-                result, is_blank = load_and_generate(untrained_model, processor, device, text_prompt, image)
+                result, is_blank = load_and_generate(base_model, processor, device, text_prompt, image)
                 df.at[index, untrained_column] = result
                 if is_blank:
-                    blank_count += 1
+                    untrained_blank_count += 1
+                    total_blank_count += 1
             if (index + 1) % save_interval == 0:
                 df.to_csv(output_csv_path, index=False)
                 print(f"Progress saved at row {index + 1}")
             pbar.update(1)
         
-        print(f"Untrained model processing complete. Blank responses: {blank_count}")
+        print(f"Untrained model processing complete. Blank responses: {untrained_blank_count}")
 
         # Process with fine-tuned models
         for model_name in model_dirs:
+            print(f"\nProcessing with fine-tuned model: {model_name}")
             model_dir = os.path.join(model_base_path, model_name, 'checkpoints', 'llava-hf', 'llava-v1.6-mistral-7b-hf-task-lora')
             latest_checkpoint = get_latest_checkpoint(model_dir)
             if latest_checkpoint:
                 try:
-                    model = load_lora_model(untuned_model_id, latest_checkpoint)
-                    model.to(device)
+                    # Load only the LoRA adapter
+                    peft_config = PeftConfig.from_pretrained(latest_checkpoint)
+                    model = PeftModel.from_pretrained(base_model, latest_checkpoint)
+                    print(f"LoRA adapter loaded for: {model_name}")
+                    print(f"Checkpoint path: {latest_checkpoint}")
                 except Exception as e:
-                    print(f"Error loading model for {model_name}: {str(e)}")
+                    print(f"Error loading LoRA adapter for {model_name}: {str(e)}")
                     pbar.update(len(df))
                     continue
             else:
@@ -159,6 +177,10 @@ def main():
                 continue
 
             column_name = model_output_columns[model_name]
+            
+            identical_count = 0
+            model_blank_count = 0
+            max_identical_threshold = 5  # Stop after 5 identical results
             
             # Inner progress bar for tracking progress within each model
             for index, row in tqdm(df.iterrows(), total=df.shape[0], desc=f"Processing {model_name}", leave=False):
@@ -171,9 +193,21 @@ def main():
                     
                     text_prompt = base_prompt.format(ocr_text=row['pyte_ocr'])
                     result, is_blank = load_and_generate(model, processor, device, text_prompt, image)
+                    
+                    # Compare with untrained model result
+                    if result == row[untrained_column]:
+                        identical_count += 1
+                        if identical_count >= max_identical_threshold:
+                            print(f"\nWARNING: {model_name} produced {max_identical_threshold} consecutive identical results to the untrained model.")
+                            print("LoRA may not be applied correctly. Skipping to next model.")
+                            break
+                    else:
+                        identical_count = 0  # Reset counter if results differ
+                    
                     df.at[index, column_name] = result
                     if is_blank:
-                        blank_count += 1
+                        model_blank_count += 1
+                        total_blank_count += 1
                 
                 if (index + 1) % save_interval == 0:
                     df.to_csv(output_csv_path, index=False)
@@ -181,10 +215,12 @@ def main():
                 
                 pbar.update(1)  # Update overall progress bar
 
-            print(f"Results saved for {model_name}, current total blank responses: {blank_count}")
+            print(f"Results saved for {model_name}. Identical responses: {identical_count}, Blank responses: {model_blank_count}")
+
+            # Unload the LoRA adapter
+            model = base_model
 
     df.to_csv(output_csv_path, index=False)
-    print(f"All processing complete. Final total blank responses: {blank_count}")
-
+    print(f"\nAll processing complete. Total blank responses across all models: {total_blank_count}")
 if __name__ == "__main__":
     main()
