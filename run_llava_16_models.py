@@ -3,13 +3,9 @@ import shutil
 import pandas as pd
 import torch
 from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration
-from peft import PeftModel, PeftConfig
 from torch.cuda.amp import autocast, GradScaler
 from tqdm import tqdm
 from PIL import Image
-
-#uses llavaenv
-#8 13 2024
 
 # Set environment variable to avoid warnings about parallelism
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -45,40 +41,18 @@ model_output_columns = {
 untrained_column = 'LLAVA_untuned'
 
 # Base prompt template for OCR correction
-base_prompt = "[INST] <image>\nCorrect this OCR: {ocr_text}[/INST]"
+base_prompt = "[INST] <image>\nGive me the text of this historical letter: {ocr_text}[/INST]"
 save_interval = 100  # Save progress every 100 rows
-process_row_limit = 2  # Limit the number of rows to process (for testing)
+process_row_limit = 5  # Limit the number of rows to process (for testing)
 
-# Helper function to get the latest checkpoint in a directory
-
+# Updated helper function to get the latest checkpoint in a directory
 def get_latest_checkpoint(model_dir):
-    checkpoints = [os.path.join(model_dir, d) for d in os.listdir(model_dir) if d.startswith('checkpoint-')]
+    checkpoints = []
+    for root, dirs, files in os.walk(model_dir):
+        for dir in dirs:
+            if dir.startswith('checkpoint-'):
+                checkpoints.append(os.path.join(root, dir))
     return max(checkpoints, key=os.path.getmtime) if checkpoints else None
-
-def load_lora_model(base_model_id, adapter_model_path):
-    # Load the base model
-    base_model = LlavaNextForConditionalGeneration.from_pretrained(
-        base_model_id,
-        torch_dtype=torch.float16,
-        low_cpu_mem_usage=False
-    )
-    
-    # Load the LoRA model
-    model = PeftModel.from_pretrained(base_model, adapter_model_path)
-    
-    # Merge the LoRA weights with the base model
-    model = model.merge_and_unload()
-    
-    return model
-
-# New function to copy config.json to checkpoint directory
-def copy_config_to_checkpoint(model_dir, checkpoint_dir):
-    config_path = os.path.join(model_dir, 'config.json')
-    if os.path.exists(config_path):
-        shutil.copy(config_path, checkpoint_dir)
-        print(f"Copied config.json to {checkpoint_dir}")
-    else:
-        print(f"Warning: config.json not found in {model_dir}")
 
 # Helper function to load an image file
 def load_image(image_filename):
@@ -96,9 +70,6 @@ def load_and_generate(model, processor, device, text, image):
     generated_text = processor.decode(outputs[0], skip_special_tokens=True)
     is_blank = not generated_text.strip()
     return generated_text if not is_blank else "ERROR: Blank response generated", is_blank
-
-
-
 
 # Main function
 def main():
@@ -158,17 +129,18 @@ def main():
         # Process with fine-tuned models
         for model_name in model_dirs:
             print(f"\nProcessing with fine-tuned model: {model_name}")
-            model_dir = os.path.join(model_base_path, model_name, 'checkpoints', 'llava-hf', 'llava-v1.6-mistral-7b-hf-task-lora')
+            model_dir = os.path.join(model_base_path, model_name)
+            print(f"Searching for checkpoints in: {model_dir}")
             latest_checkpoint = get_latest_checkpoint(model_dir)
             if latest_checkpoint:
+                print(f"Found latest checkpoint: {latest_checkpoint}")
                 try:
-                    # Load only the LoRA adapter
-                    peft_config = PeftConfig.from_pretrained(latest_checkpoint)
-                    model = PeftModel.from_pretrained(base_model, latest_checkpoint)
-                    print(f"LoRA adapter loaded for: {model_name}")
+                    # Load the fine-tuned model from the checkpoint
+                    model = LlavaNextForConditionalGeneration.from_pretrained(latest_checkpoint).to(device)
+                    print(f"Model loaded for: {model_name}")
                     print(f"Checkpoint path: {latest_checkpoint}")
                 except Exception as e:
-                    print(f"Error loading LoRA adapter for {model_name}: {str(e)}")
+                    print(f"Error loading model for {model_name}: {str(e)}")
                     pbar.update(len(df))
                     continue
             else:
@@ -180,7 +152,7 @@ def main():
             
             identical_count = 0
             model_blank_count = 0
-            max_identical_threshold = 1  # Stop after 5 identical results
+            max_identical_threshold = 5  # Stop after 5 identical result
             
             # Inner progress bar for tracking progress within each model
             for index, row in tqdm(df.iterrows(), total=df.shape[0], desc=f"Processing {model_name}", leave=False):
@@ -199,7 +171,7 @@ def main():
                         identical_count += 1
                         if identical_count >= max_identical_threshold:
                             print(f"\nWARNING: {model_name} produced {max_identical_threshold} consecutive identical results to the untrained model.")
-                            print("LoRA may not be applied correctly. Skipping to next model.")
+                            print("Fine-tuning may not be applied correctly. Skipping to next model.")
                             break
                     else:
                         identical_count = 0  # Reset counter if results differ
@@ -217,10 +189,11 @@ def main():
 
             print(f"Results saved for {model_name}. Identical responses: {identical_count}, Blank responses: {model_blank_count}")
 
-            # Unload the LoRA adapter
+            # Reset the model to the base model after processing
             model = base_model
 
     df.to_csv(output_csv_path, index=False)
     print(f"\nAll processing complete. Total blank responses across all models: {total_blank_count}")
+
 if __name__ == "__main__":
     main()

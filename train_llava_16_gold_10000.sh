@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the number of GPUs
-NUM_GPUS=2
+NUM_GPUS=4
 
 # Function to find a random available port
 find_free_port() {
@@ -38,13 +38,35 @@ export WANDB_MODE=offline
 export WANDB_SILENT=true
 
 # Calculate per-GPU batch size
-TOTAL_BATCH_SIZE=8  # Reduced from 16
+TOTAL_BATCH_SIZE=12  # Reduced from 16
 PER_GPU_BATCH_SIZE=$((TOTAL_BATCH_SIZE / NUM_GPUS))
 
 # Debug information
 echo "Number of GPUs: $NUM_GPUS"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 nvidia-smi
+
+# Function to log system metrics
+log_metrics() {
+    LOG_FILE="/data/lhyman6/OCR/scripts/ocr_llm/slurm_logging/ocr_job/system_metrics_gold_10000.log"
+    echo "Timestamp,CPU_Usage,RAM_Usage,Swap_Usage,Disk_Usage,GPU_Usage,GPU_Memory" > $LOG_FILE
+    
+    while true; do
+        TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+        CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+        RAM_USAGE=$(free -m | awk '/Mem:/ { print $3 }')
+        SWAP_USAGE=$(free -m | awk '/Swap:/ { print $3 }')
+        DISK_USAGE=$(df -h | awk '$NF=="/data/lhyman6/OCR/scripts/ocr_llm" {print $5}')
+        GPU_STATS=$(nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader,nounits | awk '{print $1","$2}')
+        
+        echo "$TIMESTAMP,$CPU_USAGE,$RAM_USAGE,$SWAP_USAGE,$DISK_USAGE,$GPU_STATS" >> $LOG_FILE
+        sleep 60  # Log every minute
+    done
+}
+
+# Start logging in the background
+log_metrics &
+LOG_PID=$!
 
 # Add debugging section to check model layers
 python3 << END
@@ -83,9 +105,6 @@ END
 
 echo "Starting DeepSpeed training..."
 
-# Start GPU memory monitoring
-nvidia-smi --query-gpu=timestamp,memory.used,memory.free,utilization.gpu --format=csv -l 5 > gpu_usage.log &
-
 # Run DeepSpeed directly (without srun)
 deepspeed --num_gpus=$NUM_GPUS train_mem.py \
     --deepspeed /data/lhyman6/OCR/scripts/ocr_llm/zero3.json \
@@ -123,4 +142,10 @@ deepspeed --num_gpus=$NUM_GPUS train_mem.py \
     --lazy_preprocess True \
     --run_name "llava_16_gold_10000_training"
 
+
+# Stop the background logging
+kill $LOG_PID
+
 echo "DeepSpeed training completed."
+
+

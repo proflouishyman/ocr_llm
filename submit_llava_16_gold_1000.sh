@@ -5,7 +5,7 @@
 #SBATCH --partition=ica100
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:4
 #SBATCH --cpus-per-task=10
 #SBATCH --qos=qos_gpu
 #SBATCH --account=lhyman6_gpu
