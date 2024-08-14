@@ -133,7 +133,7 @@ sizes = [100, 1000, 10000]
 def generate_job_name(data_type, size):
     size_map = {100: "100", 1000: "1k", 10000: "10k"}
     prefix = "g" if data_type == "gold" else "s"
-    return f"{prefix}_{size_map[size]}_l16_1"
+    return f"{prefix}_{size_map[size]}_l16_2"
 
 # Create the scripts
 for data_type in types:

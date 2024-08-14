@@ -1,17 +1,17 @@
 {
-  "port": 12345,
-  "train_micro_batch_size_per_gpu": 16,
-  "gradient_accumulation_steps": 1,
+  "train_batch_size": 6,
+  "train_micro_batch_size_per_gpu": "auto",
+  "gradient_accumulation_steps": 2,
   "steps_per_print": "epoch",
   "save_interval": "epoch",
   "zero_optimization": {
     "stage": 3,
     "offload_optimizer": {
-      "device": "cpu",
+      "device": "none",
       "pin_memory": true
     },
     "offload_param": {
-      "device": "cpu",
+      "device": "none",
       "pin_memory": true
     },
     "overlap_comm": true,
@@ -25,27 +25,27 @@
     "stage3_gather_16bit_weights_on_model_save": true
   },
   "fp16": {
-    "enabled": false,
+    "enabled": "auto",
     "loss_scale": 0,
     "initial_scale_power": 16
   },
   "bf16": {
-    "enabled": true
+    "enabled": "auto"
   },
   "optimizer": {
     "type": "Adam",
     "params": {
-      "lr": 1e-5,
-      "betas": [0.9, 0.999],
-      "eps": 1e-8,
-      "weight_decay": 0.01
+      "lr": "auto",
+      "betas": "auto",
+      "eps": "auto",
+      "weight_decay": "auto"
     }
   },
   "scheduler": {
     "type": "WarmupLR",
     "params": {
-      "warmup_min_lr": 0,
-      "warmup_max_lr": 1e-5,
+      "warmup_min_lr": "auto",
+      "warmup_max_lr": "auto",
       "warmup_num_steps": "auto"
     }
   },
